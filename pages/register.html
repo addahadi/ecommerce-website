@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="../styles/register.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        <form class="form">
+
+            <h2 class="title"><span>Get</span>Started</h2>
+
+            <div class="name">
+                <input  type="text" placeholder="Name" id="name"  required/>
+                <input type="text" placeholder="Family name" id="name" required/>
+            </div>
+        
+            <label for="email">Email</label>
+            <input type="email" placeholder="Email" name="email" id="email" required >
+        
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password"  placeholder="Password" required >
+        
+            <label for="phone">Phone number</label>
+            <input type="tel" placeholder="Phone" id="phone" name="phone" required/>
+        
+
+            <label for="role">Select Role</label>
+            <select id="role" name="role">
+                <option value="client">Client</option>
+                <option value="seller">Seller</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <button class="btn">Sign Up</button>
+            
+        </form>
+        <div class="image-section">
+            <img src="../assests/imgs/signup.png" />
+        </div>
+    </main>
+</body>
+</html>
