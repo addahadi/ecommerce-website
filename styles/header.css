@@ -26,6 +26,11 @@ header {
     font-size: 25px;
     color:#E3F2FD;
 }
+.img-section div h5{
+
+    font-size: 15px;
+    color:#79A9FF;
+}
 .img-section div p{
     color: #E3F2FD;
     line-height: 23px;
