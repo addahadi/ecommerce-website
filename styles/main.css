@@ -8,9 +8,7 @@ main {
 .category-section {
     padding-top: 20px;
     padding-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
+
 }
 
 .category-header h2 span {
@@ -23,6 +21,7 @@ main {
     align-items: center;
     justify-content: center;
     gap: 30px;
+    margin-top: 45px;
 }
 .category-card {
     background: white;
@@ -60,6 +59,10 @@ main {
 .Explore-container{
     margin-top: 50px;
     padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 15px;
+    column-gap: 30px;
 }
 
 .products{
@@ -81,4 +84,12 @@ main {
     justify-content: space-between;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+
+.category-label {
+    border-left: 10px solid #0D47A1;
+    padding-left: 10px;
+    height: fit-content;
+    color: #0D47A1;
 }
