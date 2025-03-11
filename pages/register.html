@@ -11,38 +11,53 @@
 </head>
 <body>
     <main class="container">
-        <form class="form">
-
-            <h2 class="title"><span>Get</span>Started</h2>
-
-            <div class="name">
-                <input  type="text" placeholder="Name" id="name"  required/>
-                <input type="text" placeholder="Family name" id="name" required/>
-            </div>
-        
-            <label for="email">Email</label>
-            <input type="email" placeholder="Email" name="email" id="email" required >
-        
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password"  placeholder="Password" required >
-        
-            <label for="phone">Phone number</label>
-            <input type="tel" placeholder="Phone" id="phone" name="phone" required/>
-        
-
-            <label for="role">Select Role</label>
-            <select id="role" name="role">
-                <option value="client">Client</option>
-                <option value="seller">Seller</option>
-                <option value="admin">Admin</option>
-            </select>
-
-            <button class="btn">Sign Up</button>
+        <section class="form-section">
+            <form class="form">
+                <h2 class="title"><span>Get</span>Started</h2>
+    
+                <div class="name" id="name">
+                    <input  type="text" placeholder="Name" id="name"  required/>
+                    <input type="text" placeholder="Family name" id="name" required/>
+                </div>
             
-        </form>
+                <label for="email">Email</label>
+                <input type="email" placeholder="Email" name="email" id="email" required >
+            
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password"  placeholder="Password" required >
+            
+    
+                
+                <label for="role">Select Role</label>
+                <select id="role" name="role">
+                    <option value="client">Client</option>
+                    <option value="seller">Seller</option>
+                </select>
+                
+                
+                <section class="seller-section" id="seller-section">
+                    
+                    <label for="store">Store name <span style="color: #0D47A1;">(optional)</span></label>
+                    <input type="tel" placeholder="store-name" id="store-name" name="store" />
+    
+    
+                    <label for="phone">Phone number</label>
+                    <input type="tel" placeholder="Phone" id="phone" name="phone" />
+                
+    
+                    <label for="logo">Store logo <span style="color: #0D47A1;">(optional)</span></label>
+                    <input type="tel" placeholder="Phone" id="store-logo" name="logo"/>
+    
+                </section>
+                <button class="btn" id="register-button">Sign Up</button>
+                <p class="switch" id="switch">you have and account</p>
+            </form>
+        </section>
         <div class="image-section">
             <img src="../assests/imgs/Sideimg.png" />
         </div>
     </main>
 </body>
+
+<script src="../scripts/signup.js"></script>
 </html>

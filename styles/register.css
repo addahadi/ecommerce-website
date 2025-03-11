@@ -22,9 +22,16 @@ body {
    
 }
 
-.form {
+
+.form-section {
     width: 40%;
-    padding: 120px;
+    padding: 115px;
+}
+
+.form {
+    padding: 5px;    
+    overflow: auto;
+    height: 100%;
 }
 
 .form .title {
@@ -100,3 +107,27 @@ body {
 
 
 
+.seller-section {
+    display: none;
+}
+
+
+.active {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+
+.switch {
+
+    margin-top: 20px;
+    cursor: pointer;
+    color: #0D47A1;
+}
+
+.switch:hover{
+    text-decoration: underline;
+}
