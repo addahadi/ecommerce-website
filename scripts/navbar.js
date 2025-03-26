@@ -1,4 +1,6 @@
-// js/components.js
+
+
+
 function createNavbar() {
   return `
         <nav class="navbar">
@@ -15,7 +17,10 @@ function createNavbar() {
                 </button>
             </li>
             <li>
-                <a href="./register.html">
+                <a href="./register.html" id="Login-button">
+                    Login/Sign-up
+                </a>
+                <a href="./profile.html" id="profile-button">
                     <img src="../assests/icons/user.svg" alt="user" width="17px"/>
                 </a>
             </li>
