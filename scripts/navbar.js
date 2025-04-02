@@ -25,6 +25,11 @@ function createNavbar() {
                 </a>
             </li>
             <li>
+                <a href="./add.html" id="add-product-button">
+                    <img src="../assests/icons/add.svg" width="27px"/>
+                </a>
+            </li>
+            <li>
                 <a>
                     <img src="../assests/icons/cart.svg" alt="cart" width="22px"/>
                 </a>

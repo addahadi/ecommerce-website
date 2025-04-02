@@ -77,7 +77,8 @@ form.addEventListener('submit' , async (e) => {
                 phone: phoneNumber.value.trim(),
               }),
             };
-    
+
+            console.log(requestBody)
             if (role === "seller" && requestBody.phone.length < 6) {
               alert("Phone number must be at least 6 digits long.");
               return;
@@ -88,12 +89,11 @@ form.addEventListener('submit' , async (e) => {
               headers: {
                 "Content-type": "application/json",
               },
-              credentials: "include", // Add this line
 
               body: JSON.stringify(requestBody),
             });
-            
-    
+
+            console.log(response)
     
             } catch (error) {
                 console.error('Error:', error);

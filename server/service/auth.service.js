@@ -76,7 +76,7 @@ const loginUser = (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
     
-    req.session.user = { id: user.userId, email: user.email , role:user.role , username : user.username };
+    req.session.user = { Id: user.userId, email: user.email , role:user.role , username : user.username };
 
     res.status(200).json({ message: "Login successful" });
   

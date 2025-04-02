@@ -1,14 +1,18 @@
 const express = require("express");
 const cors = require("cors");
 const authRoutes = require("./routes/user.route");
-
+const productRoutes = require("./routes/product.route")
 const session = require("express-session")
 const MySQLStore = require("express-mysql-session")(session);
 const app = express();
 const PORT = 8090;
+const multer = require("multer");
 
 
 app.use(express.json()); 
+
+
+app.use("/uploads", express.static("uploads"));
 
 
 const sessionStore = new MySQLStore({
@@ -30,9 +34,9 @@ app.use(
   })
 );
 
-// CORS configuration must be:
+
 app.use(cors({
-  origin: "http://localhost:5500", // Must match EXACTLY
+  origin: "http://localhost:5500",
   credentials: true,
  
 }));
@@ -45,12 +49,11 @@ app.get("/", (req, res) => {
 
 
 
-
 app.use("/auth", authRoutes);
+app.use("/product" , productRoutes);
 
 
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT} 🚀`);
 });
-

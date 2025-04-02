@@ -17,10 +17,17 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (result.loggedIn) {
       document.getElementById("Login-button").style.display = "none";
       document.getElementById("profile-button").style.display = "inline-block";
+      if(result.user.role == "client"){
+        document.getElementById("add-product-button").style.display = "none"
+      }
     } else {
       document.getElementById("Login-button").style.display = "inline-block";
       document.getElementById("profile-button").style.display = "none";
     }
+
+
+
+
   } catch (error) {
     console.error("Error checking auth status:", error);
    
