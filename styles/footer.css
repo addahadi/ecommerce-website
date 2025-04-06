@@ -1,0 +1,28 @@
+.footer {
+    background-color: #0D1321;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+.footer .logo {
+    padding: 5px 15px;
+    display: inline-block;
+}
+.footer .contact {
+    margin: 10px 0;
+}
+.social {
+    margin-bottom: 10px;
+}
+.footer .social a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 18px;
+}
+.footer .links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+}

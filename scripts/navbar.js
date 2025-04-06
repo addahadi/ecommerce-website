@@ -1,6 +1,7 @@
 // js/components.js
 function createNavbar() {
-  return `
+  
+    return `
         <nav class="navbar">
            <div class="logo">
              <img  src="../assests/icons/logo.svg" width="40px"  />
