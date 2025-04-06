@@ -1,42 +1,59 @@
-
-const http = require("http");
-const PORT  = 8000;
-
-const authRoute = require("./routes/user.route")
-
-
-const server = http.createServer((req , res) => {
-     
-    
-    res.setHeader("Access-Control-Allow-Origin", "*"); // Allow all origins
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE"); // Allow specific methods
-    res.setHeader(
-      "Access-Control-Allow-Headers",
-      "Content-Type, Authorization"
-    ); // Allow specific headers
-
-    // Handle preflight requests
-    if (req.method === "OPTIONS") {
-      res.writeHead(204); // No content for OPTIONS request
-      res.end();
-      return;
-    }
+const express = require("express");
+const cors = require("cors");
+const authRoutes = require("./routes/user.route");
+const productRoutes = require("./routes/product.route")
+const session = require("express-session")
+const MySQLStore = require("express-mysql-session")(session);
+const app = express();
+const PORT = 8090;
+const multer = require("multer");
 
 
+app.use(express.json()); 
 
-     if (req.url === "/" && req.method === "GET") {
-       res.writeHead(200, { "Content-Type": "text/plain" });
-       res.end("Hello from the server!");
-     } else {
-       // Pass other routes to the authRoute
-       authRoute(req, res);
-     }
-})
+
+app.use("/uploads", express.static("uploads"));
+
+
+const sessionStore = new MySQLStore({
+  host: "127.0.0.1",
+  user: "root",
+  password: "missoumadda",
+  database: "ecommerce-schema",
+});
 
 
 
+app.use(
+  session({
+    key: "session_cookie_name",
+    secret: "your_super_secret_key",
+    store: sessionStore,
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
 
-server.listen(PORT , () => {
-    console.log("the server is running");
-})
+app.use(cors({
+  origin: "http://localhost:5500",
+  credentials: true,
+ 
+}));
+
+
+
+app.get("/", (req, res) => {
+  res.status(200).send("Hello from the server!");
+});
+
+
+
+app.use("/auth", authRoutes);
+app.use("/product" , productRoutes);
+
+
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT} 🚀`);
+});

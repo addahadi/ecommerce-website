@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Client Profile</title>
+  <link rel="stylesheet" href="../styles/profile.css">
+  <link rel="stylesheet" href="../styles/header.css">
+      <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar"></div>
+  <div class="profile-layout">
+    
+    <aside class="sidebar">
+      <h3>Manage My Account</h3>
+      <ul>
+        <li class="active">My Profile</li>
+        <li>My Payment Options</li>
+      </ul>
+      <h3>My Wishlist</h3>
+      <ul>
+        
+        <li>Wishlist</li>
+      </ul>
+    </aside>
+
+    
+    <main class="main-content">
+      <section class="card" id="personal-info-section">
+        <h2>Personal Information</h2>
+        <div id="personal-info-view">
+          <p><strong>Name:</strong> <span id="name">John Doe</span></p>
+          <p><strong>Email:</strong> <span id="email">john@example.com</span></p>
+          <p><strong>Phone:</strong> <span id="phone">+123456789</span></p>
+          <button onclick="showEditPersonalInfo()">Edit Info</button>
+        </div>
+        <div id="personal-info-edit" style="display: none;">
+          <label>Name: <input type="text" id="edit-name" /></label><br/>
+          <label>Email: <input type="email" id="edit-email" /></label><br/>
+          <label>Phone: <input type="text" id="edit-phone" /></label><br/>
+          <button onclick="savePersonalInfo()">Save</button>
+          <button onclick="cancelEdit('personal-info')">Cancel</button>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="../scripts/main.js"></script>
+  <script src="../scripts/navbar.js"></script>
+  <script type="module" src="../scripts/profile.js"></script>
+</body>
+</html>

@@ -12,11 +12,11 @@
 <body>
     <main class="container">
         <section class="form-section">
-            <form class="form">
+            <form class="form" id="form">
                 <h2 class="title"><span>Get</span>Started</h2>
 
                 <label for="name">Name</label>
-                <input type="text" placeholder="name" id="name"  required/>
+                <input type="text" placeholder="name" id="name" name="name"  />
                
                 <label for="email">Email</label>
                 <input type="email" placeholder="Email" name="email" id="email" required >
@@ -47,7 +47,7 @@
                     <input type="tel" placeholder="Phone" id="store-logo" name="logo"/>
     
                 </section>
-                <button class="btn" id="register-button">Sign Up</button>
+                <button class="btn" id="register-button" type="submit">Sign Up</button>
                 <p class="switch" id="switch">you have and account</p>
             </form>
         </section>
@@ -56,6 +56,5 @@
         </div>
     </main>
 </body>
-
-<script src="../scripts/signup.js"></script>
+<script type="module" src="../scripts/signup.js"></script>
 </html>
