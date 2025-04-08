@@ -48,6 +48,13 @@ roleInput.addEventListener('change' , () => {
     else {SellerSection.classList.remove("active")}
 })
 
+
+
+
+
+
+
+
 form.addEventListener('submit' , async (e) => {
     e.preventDefault()
     
@@ -56,9 +63,7 @@ form.addEventListener('submit' , async (e) => {
         const email = emailInput.value.trim();
         const password = passwordInput.value.trim();
         const role = roleInput.value.trim();
-        
-    
-    
+            
         if(!validateSignUpForm(username , email , password , role)){
             return;
         }
@@ -66,35 +71,32 @@ form.addEventListener('submit' , async (e) => {
         
         try {
             
-            const requestBody = {
-              username,
-              email,
-              password,
-              role,
-              ...(role === "seller" && {
-                store_name: storeName.value.trim(),
-                store_logo: storeLogo.value.trim(),
-                phone: phoneNumber.value.trim(),
-              }),
-            };
+            const formData = new FormData()
 
-            console.log(requestBody)
-            if (role === "seller" && requestBody.phone.length < 6) {
+            formData.append('username' , username)
+            formData.append('email' , email)
+            formData.append('password' , password)
+            formData.append('role' , role)
+            
+            if(role === "seller"){
+                console.log(storeLogo.files[0])
+                formData.append("store_name" , storeName.value.trim())
+                formData.append("store_logo", storeLogo.files[0]);
+                formData.append("phone", phoneNumber.value.trim());
+            }
+            if (role === "seller" && phoneNumber < 6) {
               alert("Phone number must be at least 6 digits long.");
               return;
             }
     
             const response = await fetch("http://localhost:8090/auth/signup", {
               method: "POST",
-              headers: {
-                "Content-type": "application/json",
-              },
-
-              body: JSON.stringify(requestBody),
+              body: formData,
             });
+            if (response.ok) {
+              IsSignUp = false;
+            }
 
-            console.log(response)
-    
             } catch (error) {
                 console.error('Error:', error);
             }

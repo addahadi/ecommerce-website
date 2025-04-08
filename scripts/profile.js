@@ -1,8 +1,11 @@
 import {validateLoginForm} from "../utils/util.js"
 
 
+const listItems = document.querySelectorAll(".sidebar li")
+const sectionItems = document.querySelectorAll(" main .card")
 
 
+let userData = {}
 
 
 document.addEventListener("DOMContentLoaded" , async () => {
@@ -12,10 +15,13 @@ document.addEventListener("DOMContentLoaded" , async () => {
       credentials:"include"
     })
     const result = await response.json()
+    console.log(result)
     if(result){
-      document.getElementById("name").textContent = result.username;
-      document.getElementById("email").textContent = result.email;
-      document.getElementById("phone").textContent = result.pssword
+      userData = result
+      populateUserInfo(result);
+    }
+    if(result.role == "seller"){
+      document.getElementById("seller-section").style.display = "block"
     }
   }
   catch(err){
@@ -27,73 +33,95 @@ document.addEventListener("DOMContentLoaded" , async () => {
 
 
 
+function populateUserInfo (data){
+  const mapping = {
+    "welcom" : data.username,
+    "name" : data.username,
+    "email" : data.email,
+    "phone" : "******",
+    "store-name" : data.store_name,
+    "store-phone" : data.phone_number,
+    "store-logo" : data.store_logo
+  }
+  for(const Id in mapping){
+    const element = document.getElementById(Id)
+    if(element){
+      if(Id == "store-logo"){
+        element.src = `../server/uploads/${mapping[Id]}`;
+      }
+      element.textContent = mapping[Id];
+    }
+  }
+}
+
+
+listItems.forEach((item) => {
+  item.addEventListener("click" , () => {
+      listItems.forEach((li) => li.classList.remove("active"));
+
+      item.classList.add("active");    
+
+      sectionItems.forEach((section) => section.style.display = "none");
+      const targetId = item.getAttribute("data-target");
+      const targetSection = document.getElementById(targetId);
+      
+      if(targetSection){
+        targetSection.style.display = "block"
+      }
+  })
+})
 
 
 
 
 
+function showEditPersonalInfo(sectionId , fields) {
+  document.getElementById(`${sectionId}-view`).style.display = "none";
+  document.getElementById(`${sectionId}-edit`).style.display = "block";
 
-function showEditPersonalInfo() {
-  document.getElementById("personal-info-view").style.display = "none";
-  document.getElementById("personal-info-edit").style.display = "block";
-
-  // Pre-fill input fields
-  document.getElementById("edit-name").value = document.getElementById("name").textContent;
-  document.getElementById("edit-email").value = document.getElementById("email").textContent;
-  document.getElementById("edit-phone").value = document.getElementById("phone").textContent;
+  fields.forEach((field) => {
+    const spanContent = document.getElementById(field).textContent || "";
+    document.getElementById(`edit-${field}`).value = spanContent;
+  })
 }
 
 window.showEditPersonalInfo = showEditPersonalInfo;
 
 
-async function savePersonalInfo() {
+async function savePersonalInfo( section ,fields , endpoints , url) {
 
-  const name = document.getElementById("edit-name");
-  const email = document.getElementById("edit-email");
-  const password = document.getElementById("edit-phone");
+  const formData = new FormData()
+  fields.forEach((field , index) => {
+    const targetInput = document.getElementById(field)
+  
+    if (field === "edit-store-logo"){
+      formData.append("image" , targetInput.files[0])
+      return 
+    }
 
+    formData.append(`${endpoints[index]}` ,targetInput.value.trim());
 
-
-  if(!validateLoginForm(email.value , password.value)){
-    return 
-  }
-
-  if(name.value.length < 5){
-    alert("the name is short")
-    return
-  }
+  })
 
   try {
-     const requestBody = {
-      username : name.value.trim() ,
-      email : email.value.trim(),
-      password  : password.value.trim()
-     }
-     const response = await fetch("http://localhost:8090/auth/update", {
+     
+     const response = await fetch(url, {
        method: "POST",
        credentials: "include",
-       headers: {
-         "Content-type": "application/json",
-       },
-       body: JSON.stringify(requestBody),
+       body: formData,
      });
 
-     const result = await response.json()
-     console.log(result)
-     if(result.ok){
-      document.getElementById("name").textContent = name.value;
-      document.getElementById("email").textContent = email.value;
-      document.getElementById("phone").textContent = phone.value;
-
-      document.getElementById("personal-info-edit").style.display = "none";
-      document.getElementById("personal-info-view").style.display = "block";
+     
+     if(response.ok){
+      
+      document.getElementById(`${section}-edit`).style.display = "none";
+      document.getElementById(`${section}-view`).style.display = "block";
       
     }
   }
   catch(err){
     console.log(err)
   }
-  
 }
 
 window.savePersonalInfo = savePersonalInfo;
@@ -102,4 +130,28 @@ function cancelEdit(section) {
   document.getElementById(`${section}-edit`).style.display = "none";
   document.getElementById(`${section}-view`).style.display = "block";
 }
+
 window.cancelEdit = cancelEdit;
+
+
+
+
+document.getElementById("LogOut").addEventListener("click" , async () => {
+  try {
+    const response = await fetch("http://localhost:8090/auth/logout", {
+      method : "GET",
+      credentials :"include"
+    })
+    
+    if(response.ok){
+      const result = await response.json()
+      console.log(result)
+      window.location.href = "main.html"
+    }
+    
+  }
+  catch(err){
+    console.log(err)
+  }
+})
+

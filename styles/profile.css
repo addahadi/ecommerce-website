@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: "Noto Sans", serif;
  
 }
 
@@ -10,14 +11,48 @@ body {
 }
 
 
+.welcom_section {
+  max-width: 1000px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.welcom_section p strong {
+  color: #0D47A1;
+  margin-right: 4px;
+}
+.LogOut {
+  padding: 10px;
+  color: black;
+  font-weight: bold;
+  outline: none;
+  border: 1px solid #0D47A1;
+
+  cursor: pointer;
+}
+
 .profile-layout {
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 120px;
+  margin-top: 50px;
   display: flex;
 
 }
+
+.store-logo-section {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 /* Sidebar */
 .sidebar {
@@ -28,7 +63,7 @@ body {
 }
 
 .sidebar h3 {
-  font-size: 14px;
+  font-size: 17px;
   color: #333;
   margin-top: 20px;
 }
@@ -96,4 +131,11 @@ body {
 
 .card button:hover {
   background-color:#0D47A1;
+}
+
+
+
+
+#personal-info-edit{
+  padding-right: 20px;
 }

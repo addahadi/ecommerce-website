@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (result.loggedIn) {
       document.getElementById("Login-button").style.display = "none";
       document.getElementById("profile-button").style.display = "inline-block";
-      if(result.user.role == "client"){
-        document.getElementById("add-product-button").style.display = "none"
+      if(result.user.role == "seller"){
+        document.getElementById("add-product-button").style.display = "block"
       }
     } else {
       document.getElementById("Login-button").style.display = "inline-block";

@@ -39,16 +39,14 @@ const createSellerUser = async (res,username,email,hashedPassword,role,store_nam
     const query2 =
       "INSERT INTO seller (user_id, store_name, store_logo, phone_number) VALUES (?, ?, ?, ?)";
 
-    db.query(query2, [userId, store_name, store_logo, phone], (err) => {
+    db.query(query2, [userId, store_name, store_logo.filename, phone], (err) => {
       if (err) {
         return res.status(500).json({
           message: "Error inserting seller details",
           error: err.message,
         });
       }
-      res
-        .status(201)
-        .json({ message: "Seller created successfully", userId });
+      res.status(200).json("✅ user added successfully!");
     });
   });
 }

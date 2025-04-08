@@ -21,7 +21,7 @@ const addNewProduct  = (req , res) => {
                console.error("❌ Error inserting images:", err);
                return res.status(500).send("Error saving images.");
             }
-            res.send("✅ Product and images added successfully!");
+            res.status(200).json("✅ Product and images added successfully!");
         })       
     })
 }

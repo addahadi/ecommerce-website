@@ -5,12 +5,13 @@ const {createSellerUser , createClientUser , loginUser} = require("../service/au
 
 const Signup = async (req, res) => {
   try {
+
     const { password, username, role, email } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
 
     if (role == "seller") {
-      const { store_name, store_logo, phone } = req.body;
-      console.log(req.body);
+      const { store_name , phone } = req.body;
+      const storeLogoFile = req.file
 
       createSellerUser(
         res,
@@ -19,7 +20,7 @@ const Signup = async (req, res) => {
         hashedPassword,
         role,
         store_name,
-        store_logo,
+        storeLogoFile,
         phone
       );
     } else {
@@ -36,12 +37,27 @@ const Login = async (req, res) => {
 }
 
 const GetUserInfo = async (req , res) => {
-  const query = ' SELECT username , email , pssword FROM user WHERE userId = ?'
-  db.query(query , [req.session.user.id] , (err , result) => {
+  const query = ' SELECT username , email , pssword , role FROM user WHERE userId = ?'
+  db.query(query , [req.session.user.Id] , (err , result1) => {
     if(err){
       return res.status(200).json({error : err})
     }
-    res.status(200).json(result[0])
+    if(result1[0].role == "seller"){
+      const sellerId = req.session.user.Id;
+      
+      const query = 'SELECT store_name , store_logo , phone_number FROM seller WHERE user_id = ?'
+      db.query(query , [sellerId] , (err , result2) => {
+        if(err){
+          return res.status(200).json({ error: err });
+        }
+        const result = {
+          ...result1[0],
+          ...result2[0],
+        }
+        res.status(200).json(result)
+
+      })
+    }
   })  
 }
 
@@ -80,4 +96,34 @@ const UpdateUserInfo = async (req , res) => {
   }
 }
 
-module.exports = {Signup , Login , GetUserInfo , UpdateUserInfo};
+const UpdateStoreInfo = (req , res) => {
+  const {store_name , phone_number} = req.body ; 
+  const storeLogoFile = req.file;
+  const fields = []
+  const values = []
+  
+  if(store_name){
+    fields.push("store_name = ?")
+    values.push(store_name)
+  }
+  if(phone_number){
+    fields.push("phone_number = ?")
+    values.push(phone_number)
+  }
+  if(storeLogoFile){
+    fields.push("store_logo = ?")
+    values.push(storeLogoFile.filename);
+  }
+
+  const query = `UPDATE seller SET ${fields.join(', ')} WHERE phone_number = ?`
+  values.push(phone_number);
+  db.query(query , values , (err) => {
+    if (err) {
+      return res.json({ error: err });
+    }
+    res.status(200).json({ message: "Store updated successfully" });
+  })
+}
+
+
+module.exports = {Signup , Login , GetUserInfo , UpdateUserInfo , UpdateStoreInfo};

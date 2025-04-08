@@ -1,11 +1,13 @@
-const { Signup, Login , GetUserInfo , UpdateUserInfo } = require("../controller/auth.controller");
 
-const express = require("express")
+const { Signup, Login , GetUserInfo , UpdateUserInfo, UpdateStoreInfo } = require("../controller/auth.controller");
+
+const express = require("express");
+const upload = require("../middleware");
 const router = express.Router()
 
 
 
-router.post("/signup", (req, res) => Signup(req, res));
+router.post("/signup", upload.single("store_logo") , (req, res) => Signup(req, res));
 
 router.post("/login", (req, res) => Login(req, res));
 
@@ -29,23 +31,40 @@ router.get("/status" , (req , res) => {
 
 
 router.get("/me" , (req , res) => {
-    if(!req.session.user.id){
+    console.log(req.session.user)
+    if(!req.session.user.Id){
         return res.json({error : "not logged In"})
     }
-    console.log(req.session.user.id)
-
     GetUserInfo(req , res)
     
 })
 
 
+router.get('/logout', (req , res) => {
+    req.session.destroy((err) => {
+        if(err){
+            return res.status(500).json({ message: "Could not log out 😥" });
+        }
+        res.clearCookie('connect.sid')
+        res.json({message : "successful logOut"})
+    })
+})
 
-router.post("/update" , (req , res) => {
-    if(!req.session.user.id){
+
+
+router.post("/updateuser" , (req , res) => {
+    if(!req.session.user.Id){
         return res.json({error : "not logged In"})
     }
-    console.log(req.body)
     UpdateUserInfo(req , res)    
+})
+
+router.post("/updatestore" , upload.single('image'), (req , res) => {
+    if(!req.session.user.Id || !req.session.user.role == 'seller'){
+        return res.json({error : "unAuth"})
+    }
+    console.log(req.body)
+    UpdateStoreInfo(req , res)
 })
 
 module.exports = router
