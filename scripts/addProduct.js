@@ -1,8 +1,33 @@
-
 document.addEventListener("DOMContentLoaded" , () => {
-    document
-      .getElementById("addProjectForm")
-      .addEventListener("submit", async (e) => {
+  
+  const modal = document.getElementById("addProjectModal");
+  const openBtn = document.getElementById("add-product-button");
+  const closeBtn = document.querySelector(".closeBtn");
+
+  openBtn.onclick = () => {
+    modal.style.display = "block";
+    document.body.classList.add("modal-open"); 
+  };
+
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+    document.body.classList.remove("modal-open");
+  };
+
+  window.onclick = (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+      document.body.classList.remove("modal-open");
+    }
+  };
+
+})
+
+
+
+
+
+document.getElementById("addProjectForm").addEventListener("submit", async (e) => {
         e.preventDefault();
       console.log("Form submit triggered");
 
@@ -48,4 +73,3 @@ document.addEventListener("DOMContentLoaded" , () => {
           console.error(err);
         }
       });
-})

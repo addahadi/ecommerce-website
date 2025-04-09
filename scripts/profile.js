@@ -113,10 +113,9 @@ async function savePersonalInfo( section ,fields , endpoints , url) {
 
      
      if(response.ok){
-      
       document.getElementById(`${section}-edit`).style.display = "none";
       document.getElementById(`${section}-view`).style.display = "block";
-      
+
     }
   }
   catch(err){

@@ -2,7 +2,8 @@
 
 
 function createNavbar() {
-  return `
+  
+    return `
         <nav class="navbar">
            <div class="logo">
              <img  src="../assests/icons/logo.svg" width="40px"  />
@@ -25,9 +26,9 @@ function createNavbar() {
                 </a>
             </li>
             <li>
-                <a href="./add.html" id="add-product-button" style="display:none">
+                <div  id="add-product-button" style="display:none">
                     <img src="../assests/icons/add.svg" width="27px"/>
-                </a>
+                </div>
             </li>
             <li>
                 <a>
