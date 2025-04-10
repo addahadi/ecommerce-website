@@ -12,10 +12,12 @@ function createNavbar() {
 
            <ul class="list">
             <li>
-                <input placeholder="What are you looking for" type="text"/>
-                <button class="search">
-                    <img src="../assests/icons/search.svg" alt="search" width="20px"/>
-                </button>
+                <div class="search-bar">
+                   <input placeholder="What are you looking for" type="text" />
+                   <button class="search">
+                       <img src="../assests/icons/search.svg" alt="search"  />
+                   </button>
+                </div>
             </li>
             <li>
                 <a href="./register.html" id="Login-button">
