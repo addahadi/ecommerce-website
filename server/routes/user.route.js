@@ -9,6 +9,8 @@ const router = express.Router()
 
 router.post("/signup", upload.single("store_logo") , (req, res) => Signup(req, res));
 
+
+
 router.post("/login", (req, res) => Login(req, res));
 
 

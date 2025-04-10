@@ -27,5 +27,39 @@ const addNewProduct  = (req , res) => {
 }
 
 
-module.exports = {addNewProduct}
+
+function getProduct(req,res){
+
+    let query = 'SELECT productId , title , rating , price FROM product'
+
+    db.query(query , function(err , res1){
+        if(err){
+            return res.json({message:'there is an error'})
+
+        }
+        const producId = res1[0].productId
+
+        let query2 = 'SELECT img_url , imgId FROM product_img WHERE productId = ?'
+
+        db.query(query2 , [producId] , function(err , res2) {
+            if(err){
+                return res.json({message:'there is an error'})
+            }
+            const result = {
+                ...res2[0],
+                ...res1[0]
+            }
+            res.json(result);
+
+        })
+
+    })
+
+
+
+
+
+}
+
+module.exports = {addNewProduct , getProduct}
 

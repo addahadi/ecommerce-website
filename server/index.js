@@ -16,9 +16,9 @@ app.use("/uploads", express.static("uploads"));
 
 
 const sessionStore = new MySQLStore({
-  host: "127.0.0.1",
+  host: "localhost",
   user: "root",
-  password: "missoumadda",
+  password: "alialiali123",
   database: "ecommerce-schema",
 });
 
