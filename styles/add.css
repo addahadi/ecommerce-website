@@ -1,0 +1,115 @@
+
+.modal-open {
+  overflow:hidden;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  transition: opacity 0.3s ease;
+  overflow: auto;
+}
+
+.modal-content {
+  background: #fefefe;
+  margin: 6% auto;
+  padding: 30px 40px;
+  width: 90%;
+  max-width: 550px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  animation: popupFade 0.3s ease-out;
+}
+
+@keyframes popupFade {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.closeBtn {
+  float: right;
+  font-size: 26px;
+  font-weight: bold;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.closeBtn:hover {
+  color: #000;
+}
+
+.modal-content h2 {
+  color: #1c1c1c;
+  font-size: 24px;
+  margin-bottom: 20px;
+  border-left: 4px solid #0D47A1;
+  padding-left: 10px;
+  margin-bottom: 60px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+textarea,
+select {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #ddd;
+  font-size: 15px;
+  background-color: #f9f9f9;
+  transition: all 0.2s ease-in-out;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #0D47A1;
+  background-color: #fff;
+}
+
+/* Textarea */
+textarea {
+  resize: vertical;
+}
+
+button[type="submit"] {
+  padding: 12px 20px;
+  background-color: #0D47A1;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #08306b;
+}

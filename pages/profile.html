@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Client Profile</title>
+  <link rel="stylesheet" href="../styles/profile.css">
+  <link rel="stylesheet" href="../styles/header.css">
+  <link rel="stylesheet" href="../styles/footer.css">
+  <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar"></div>
+  <section class="welcom_section">
+    <p>
+      <strong>Welcom!</strong><span id="welcom"></span>
+    </p>
+    <button class="LogOut" id="LogOut">
+      LogOut
+    </button>
+  </section>
+  <section class="profile-layout">
+    
+    <aside class="sidebar">
+      <h3>Manage My Account</h3>
+      <ul>
+        <li class="active" data-target="personal-info-section">My Profile</li>
+        <li data-target="payment-section">My Payment Options</li>
+      </ul>
+      <h3>My Wishlist</h3>
+      <ul>
+        <li data-target="wishlist-section">Wishlist</li>
+      </ul>
+      <div id="seller-section" style="display: none;">
+        <h3>Manage My Store</h3>
+        <ul>
+          <li data-target="store-section">My store</li>
+        </ul>
+      </div>
+    </aside>
+
+    
+    <main class="main-content">
+        <section class="card" id="personal-info-section">
+          <h2>Personal Information</h2>
+          <div id="personal-info-view">
+            <p><strong>Name:</strong> <span id="name"></span></p>
+            <p><strong>Email:</strong> <span id="email"></span></p>
+            <p><strong>password:</strong> <span id="phone"></span></p>
+            <button onclick="showEditPersonalInfo('personal-info' , ['name' , 'email' , 'phone'])">Edit Info</button>
+          </div>
+          <div id="personal-info-edit" style="display: none;">
+            <label>Name: <input type="text" id="edit-name" /></label><br/>
+            <label>Email: <input type="email" id="edit-email" /></label><br/>
+            <label>password: <input type="text" id="edit-phone" /></label><br/>
+            <button onclick="savePersonalInfo('personal-info' ,['edit-name' , 'edit-email' , 'edit-phone'] , ['username' , 'email' , 'password']) , 'http://localhost:8090/auth/updateuser'">Save</button>
+            <button onclick="cancelEdit('personal-info')">Cancel</button>
+          </div>
+        </section>
+        <section class="card" id="store-section" style="display: none;">
+          <h2>Store Information </h2>
+          <div id="personal-store-view">
+            <p><strong>Store-name:</strong> <span id="store-name"></span></p>
+            <p><strong>phone:</strong> <span id="store-phone"></span></p>
+            <div >
+              <div>
+                <strong>Store_logo:</strong> 
+              </div>
+              <div class="store-logo-section">
+                <img id="store-logo" width="150"/>
+              </div>
+            </div>
+            <button onclick="showEditPersonalInfo('personal-store' , ['store-name' , 'store-phone' , 'store-logo'])">Edit Info</button>
+          </div>
+          <div id="personal-store-edit" style="display: none;">
+            <label>Store-name: <input type="text" id="edit-store-name" /></label><br/>
+            <label>phone: <input type="text" id="edit-store-phone" /></label><br/>
+            <label>Store-logo: <input type="file" accept="image/*" id="edit-store-logo"/></label><br/>
+            <button onclick="savePersonalInfo('personal-store',['edit-store-name' , 'edit-store-phone' , 'edit-store-logo'] , ['store_name' , 'phone_number' , 'store_logo'] , '//localhost:8090/auth/updatestore')">Save</button>
+            <button onclick="cancelEdit('personal-info')">Cancel</button>
+          </div>
+        </section>
+    </main>
+
+  </section>
+  <div id="footer"></div>
+  <script src="../scripts/main.js"></script>
+  <script src="../scripts/navbar.js"></script>
+  <script src="../scripts/footer.js" ></script>
+  <script type="module" src="../scripts/profile.js"></script>
+</body>
+</html>

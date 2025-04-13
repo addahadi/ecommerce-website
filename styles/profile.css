@@ -1,0 +1,141 @@
+body {
+  margin: 0;
+  font-family: "Noto Sans", serif;
+ 
+}
+
+#navbar {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.welcom_section {
+  max-width: 1000px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.welcom_section p strong {
+  color: #0D47A1;
+  margin-right: 4px;
+}
+.LogOut {
+  padding: 10px;
+  color: black;
+  font-weight: bold;
+  outline: none;
+  border: 1px solid #0D47A1;
+
+  cursor: pointer;
+}
+
+.profile-layout {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  display: flex;
+
+}
+
+.store-logo-section {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #fff;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+}
+
+.sidebar h3 {
+  font-size: 17px;
+  font-weight: normal;
+  color: #333;
+  margin-top: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.sidebar li {
+  padding: 10px 0;
+  color: #999;
+  cursor: pointer;
+}
+
+.sidebar li.active {
+  color: #0D47A1;
+  font-weight: bold;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.card {
+  background-color: white;
+  padding: 40px;
+  border-radius: 6px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+}
+
+.card h2 {
+  color: #0D47A1;
+  margin-top: 0;
+}
+
+.card label {
+  display: block;
+  margin: 10px 0;
+}
+
+.card input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.card button {
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 8px 14px;
+  background-color:#0D47A1;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background-color:#0D47A1;
+}
+
+
+
+
+#personal-info-edit{
+  padding-right: 20px;
+}

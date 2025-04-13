@@ -17,12 +17,43 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (result.loggedIn) {
       document.getElementById("Login-button").style.display = "none";
       document.getElementById("profile-button").style.display = "inline-block";
+      if(result.user.role == "seller"){
+        document.getElementById("add-product-button").style.display = "block"
+      }
     } else {
       document.getElementById("Login-button").style.display = "inline-block";
       document.getElementById("profile-button").style.display = "none";
     }
+
+
+
+
   } catch (error) {
     console.error("Error checking auth status:", error);
    
   }
 });
+
+
+document.addEventListener('DOMContentLoaded' , async () => {
+  
+  try {
+
+    const response = await fetch("http://localhost:8090/product/get" , {
+      method : 'GET',
+      credentials :"include"
+    })
+
+    if(response.ok){
+      result = await response.json()
+      console.log(result.img_url)
+      document.getElementById("productImg").src = `../server/uploads/${result.img_url}`
+      document.getElementById("productPrice").textContent = result.price + "$"
+      document.getElementById("productTitle").textContent = result.title
+
+    }
+  }
+  catch(err){
+    console.log(err)
+  }
+})

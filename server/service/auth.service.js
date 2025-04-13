@@ -39,16 +39,14 @@ const createSellerUser = async (res,username,email,hashedPassword,role,store_nam
     const query2 =
       "INSERT INTO seller (user_id, store_name, store_logo, phone_number) VALUES (?, ?, ?, ?)";
 
-    db.query(query2, [userId, store_name, store_logo, phone], (err) => {
+    db.query(query2, [userId, store_name, store_logo.filename, phone], (err) => {
       if (err) {
         return res.status(500).json({
           message: "Error inserting seller details",
           error: err.message,
         });
       }
-      res
-        .status(201)
-        .json({ message: "Seller created successfully", userId });
+      res.status(200).json("✅ user added successfully!");
     });
   });
 }
@@ -76,7 +74,7 @@ const loginUser = (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
     
-    req.session.user = { id: user.userId, email: user.email , role:user.role , username : user.username };
+    req.session.user = { Id: user.userId, email: user.email , role:user.role , username : user.username };
 
     res.status(200).json({ message: "Login successful" });
   

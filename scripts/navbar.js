@@ -2,7 +2,8 @@
 
 
 function createNavbar() {
-  return `
+  
+    return `
         <nav class="navbar">
            <div class="logo">
              <img  src="../assests/icons/logo.svg" width="40px"  />
@@ -11,10 +12,12 @@ function createNavbar() {
 
            <ul class="list">
             <li>
-                <input placeholder="What are you looking for" type="text"/>
-                <button class="search">
-                    <img src="../assests/icons/search.svg" alt="search" width="20px"/>
-                </button>
+                <div class="search-bar">
+                   <input placeholder="What are you looking for" type="text" />
+                   <button class="search">
+                       <img src="../assests/icons/search.svg" alt="search"  />
+                   </button>
+                </div>
             </li>
             <li>
                 <a href="./register.html" id="Login-button">
@@ -23,6 +26,11 @@ function createNavbar() {
                 <a href="./profile.html" id="profile-button">
                     <img src="../assests/icons/user.svg" alt="user" width="17px"/>
                 </a>
+            </li>
+            <li>
+                <div  id="add-product-button" style="display:none">
+                    <img src="../assests/icons/add.svg" width="27px"/>
+                </div>
             </li>
             <li>
                 <a>
