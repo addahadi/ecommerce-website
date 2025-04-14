@@ -1,4 +1,4 @@
-
+import productCard  from "../scripts/productCard.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
   try {
@@ -39,21 +39,35 @@ document.addEventListener('DOMContentLoaded' , async () => {
   
   try {
 
-    const response = await fetch("http://localhost:8090/product/get" , {
+    const response = await fetch("http://localhost:8090/product/getall" , {
       method : 'GET',
       credentials :"include"
     })
 
     if(response.ok){
-      result = await response.json()
-      console.log(result.img_url)
-      document.getElementById("productImg").src = `../server/uploads/${result.img_url}`
-      document.getElementById("productPrice").textContent = result.price + "$"
-      document.getElementById("productTitle").textContent = result.title
-
+      let result = await response.json()
+      console.log(result)
+      result.data.forEach(product => {
+        document.getElementById("Explore-container").appendChild(productCard(product));
+      });
     }
   }
   catch(err){
     console.log(err)
   }
 })
+
+
+
+
+function generateStars(rating) {
+  const starContainer = document.getElementById('starRating');
+  starContainer.innerHTML = ''; // clear old stars
+
+  for (let i = 1; i <= 5; i++) {
+    const starIcon = document.createElement('i');
+    starIcon.className = i <= rating ? 'fas fa-star' : 'far fa-star';
+    starContainer.appendChild(starIcon);
+  }
+}
+

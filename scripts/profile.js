@@ -145,7 +145,7 @@ document.getElementById("LogOut").addEventListener("click" , async () => {
     if(response.ok){
       const result = await response.json()
       console.log(result)
-      window.location.href = "main.html"
+      window.location.href = "/pages/main"
     }
     
   }

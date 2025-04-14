@@ -20,10 +20,10 @@ function createNavbar() {
                 </div>
             </li>
             <li>
-                <a href="./register.html" id="Login-button">
+                <a href="./register" id="Login-button">
                     Login/Sign-up
                 </a>
-                <a href="./profile.html" id="profile-button">
+                <a href="./profile" id="profile-button">
                     <img src="../assests/icons/user.svg" alt="user" width="17px"/>
                 </a>
             </li>

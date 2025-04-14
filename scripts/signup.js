@@ -135,7 +135,7 @@ form.addEventListener('submit' , async (e) => {
                 
 
                 if(response.ok) {
-                    window.location.href = "main.html"
+                    window.location.href = "/pages/main"
                 }
                 
                 else alert("login field")

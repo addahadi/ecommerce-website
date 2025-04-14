@@ -1,7 +1,10 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
+
 const authRoutes = require("./routes/user.route");
-const productRoutes = require("./routes/product.route")
+const productRoutes = require("./routes/product.route");
+
 const session = require("express-session")
 const MySQLStore = require("express-mysql-session")(session);
 const app = express();
@@ -11,14 +14,14 @@ const multer = require("multer");
 
 app.use(express.json()); 
 
-
+app.use(express.static(path.join(__dirname, "../")));
 app.use("/uploads", express.static("uploads"));
 
 
 const sessionStore = new MySQLStore({
-  host: "localhost",
+  host: "127.0.0.1",
   user: "root",
-  password: "alialiali123",
+  password: "missoumadda",
   database: "ecommerce-schema",
 });
 
@@ -47,9 +50,14 @@ app.get("/", (req, res) => {
   res.status(200).send("Hello from the server!");
 });
 
+const pageRoutes = require("./pageRoute");
+
+app.use("/pages" , pageRoutes);
+
 
 
 app.use("/auth", authRoutes);
+
 app.use("/product" , productRoutes);
 
 

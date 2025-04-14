@@ -28,38 +28,69 @@ const addNewProduct  = (req , res) => {
 
 
 
-function getProduct(req,res){
+function getProducts(req,res){
 
     let query = 'SELECT productId , title , rating , price FROM product'
 
-    db.query(query , function(err , res1){
+    db.query(query , function(err , products){
         if(err){
             return res.json({message:'there is an error'})
 
         }
-        const producId = res1[0].productId
+        
 
         let query2 = 'SELECT img_url , imgId FROM product_img WHERE productId = ?'
+        let result  = {
+            success : true,
+            data : [] 
+        }
+        const promise = products.map((product) => {
+            const producId = product.productId
+            return new Promise((reslove , reject) => {
+                db.query(query2, [producId], function (err, image) {
+                  if (err) {
+                    return reject(err)
+                  }
+                  reslove({ ...product, ...image[0] })
+                });
+            })
+        })
 
-        db.query(query2 , [producId] , function(err , res2) {
-            if(err){
-                return res.json({message:'there is an error'})
-            }
-            const result = {
-                ...res2[0],
-                ...res1[0]
-            }
-            res.json(result);
-
+        Promise.all(promise).then((result) => {
+             res.json({
+               success: true,
+               data: result,
+             });
+        }).catch((err) => {
+            res.json({message : "no result"})
         })
 
     })
-
-
-
-
-
 }
 
-module.exports = {addNewProduct , getProduct}
+
+function getProduct(req , res) {
+    const {productId} = req.body;
+    const query = 'SELECT * FROM product WHERE productId = ?'
+    db.query(query , [productId] , (err) => {
+        if(err){
+           return res.json({message : err})
+        }
+        const query2 = 'SELECT * FROM product_img WHERE productId = ?'
+        db.query(query2 , [productId] , (err , imges) =>{
+            if(err){
+                return res.json({message : err})
+            }
+
+
+            console.log(imges)
+            
+        })
+
+    })
+}
+
+
+
+module.exports = {addNewProduct , getProducts , getProduct}
 

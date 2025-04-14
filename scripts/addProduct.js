@@ -66,7 +66,7 @@ document.getElementById("addProjectForm").addEventListener("submit", async (e) =
           });
     
           if (response.ok) {
-             window.location.href = "main.html"
+              modal.style.display = "none";
           }
 
         } catch (err) {
