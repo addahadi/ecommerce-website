@@ -5,19 +5,19 @@ const router = express.Router()
 
 
 router.get("/main", (req, res) => {
-  res.sendFile(path.join(__dirname, "../pages/main.html"));
+  res.sendFile(path.join(__dirname, "../frontEnd/pages/main.html"));
 });
 
 router.get("/register", (req, res) => {
-  res.sendFile(path.join(__dirname, "../pages/register.html"));
+  res.sendFile(path.join(__dirname, "../frontEnd/pages/register.html"));
 });
 
 router.get("/profile", (req, res) => {
-  res.sendFile(path.join(__dirname, "../pages/profile.html"));
+  res.sendFile(path.join(__dirname, "../frontEnd/pages/profile.html"));
 });
 
 router.get("/product/:productId", (req, res) => {
-  res.sendFile(path.join(__dirname, "../pages/product.html"));
+  res.sendFile(path.join(__dirname, "../frontEnd/pages/product.html"));
 });
 
 

@@ -21,6 +21,7 @@ const addNewProduct  = (req , res) => {
                console.error("❌ Error inserting images:", err);
                return res.status(500).send("Error saving images.");
             }
+  
             res.status(200).json("✅ Product and images added successfully!");
         })       
     })
@@ -55,9 +56,10 @@ function getProducts(req,res){
                 });
             })
         })
-
         Promise.all(promise).then((result) => {
-             res.json({
+            
+            console.log(result);
+            res.json({
                success: true,
                data: result,
              });
@@ -70,22 +72,31 @@ function getProducts(req,res){
 
 
 function getProduct(req , res) {
-    const {productId} = req.body;
+    const { productId } = req.body;
+    
     const query = 'SELECT * FROM product WHERE productId = ?'
-    db.query(query , [productId] , (err) => {
+    db.query(query , [productId] , (err , productResult) => {
         if(err){
            return res.json({message : err})
         }
-        const query2 = 'SELECT * FROM product_img WHERE productId = ?'
-        db.query(query2 , [productId] , (err , imges) =>{
+        const query2 = 'SELECT  img_url FROM product_img WHERE productId = ?'
+        db.query(query2 , [productId] , (err , images) =>{
             if(err){
                 return res.json({message : err})
             }
 
-
-            console.log(imges)
-            
-        })
+            const imgList = []
+            for(img of images){
+                imgList.push(img["img_url"])
+            }
+            console.log(imgList)
+            const Data = {
+                ...productResult[0],
+                imges : imgList
+            }
+            console.log(Data)
+            res.json({state : true , data:Data});
+                 })
 
     })
 }

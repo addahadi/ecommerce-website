@@ -1,0 +1,150 @@
+
+body {
+    font-family: "Noto Sans", serif;
+}
+
+
+
+:root {
+  --clr-primary: #ff4343;   
+  --clr-dark:   #222;
+  --clr-muted:  #777;
+  --gap-xs: .25rem;
+  --gap-sm: .5rem;
+  --gap-md: 1rem;
+  --gap-lg: 2rem;
+  
+  line-height: 1.5;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--gap-lg);
+  padding: var(--gap-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+}
+
+.main-image {
+  aspect-ratio: 1 / 1;
+  width: 100%;  
+  object-fit:contain;
+    box-shadow: 0 3px 10px rgba(0,0,0,.04);
+
+}
+
+.thumbnails {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--gap-sm);
+}
+
+.thumbnails img {
+  width: 70px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: border .2s;
+}
+
+.thumbnails img:hover,
+.thumbnails img.active {
+  border-color: var(--clr-primary);
+}
+
+.info{
+  flex: 1;
+
+}
+
+.details {
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.04);
+    margin-bottom: 20px;
+}
+.details h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--clr-dark);
+  margin-bottom: var(--gap-xs);
+}
+
+.rating {
+  color: #f5c518;          
+  font-size: 1rem;
+  margin-bottom: var(--gap-sm);
+}
+
+.rating span { color: var(--clr-muted); }
+
+.price {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--clr-primary);
+  margin-bottom: var(--gap-sm);
+}
+
+.description {
+  color: var(--clr-muted);
+  margin-bottom: var(--gap-md);
+}
+
+.purchase {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  margin-bottom: var(--gap-lg);
+}
+
+.purchase input[type="number"] {
+  width: 80px;
+  padding: .4rem .6rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: .4rem;
+}
+
+.buy-now {
+  background: var(--clr-primary);
+  color: #fff;
+  padding: .6rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: .6rem;
+  cursor: pointer;
+  transition: opacity .2s;
+}
+
+.buy-now:hover { opacity: .9; }
+
+.user-info {
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+
+.user-info .row {
+  display: flex;
+  justify-content: space-between;
+  padding: .75rem 1rem;
+}
+
+.user-info .row:nth-child(odd) { background: #fafafa; }
+
+.user-info p { margin: 0; color: var(--clr-muted); }
+
+.user-info span, .user-info strong {
+  font-weight: 500;
+  color: var(--clr-dark);
+}
+

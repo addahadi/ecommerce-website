@@ -14,7 +14,11 @@ const multer = require("multer");
 
 app.use(express.json()); 
 
-app.use(express.static(path.join(__dirname, "../")));
+app.use(express.static(path.join(__dirname, "../frontEnd")));
+app.use(
+  "/server/uploads",
+  express.static(path.join(__dirname, "../server/uploads"))
+);
 app.use("/uploads", express.static("uploads"));
 
 
@@ -52,13 +56,13 @@ app.get("/", (req, res) => {
 
 const pageRoutes = require("./pageRoute");
 
-app.use("/pages" , pageRoutes);
+app.use("/" , pageRoutes);
 
 
 
 app.use("/auth", authRoutes);
 
-app.use("/product" , productRoutes);
+app.use("/products" , productRoutes);
 
 
 

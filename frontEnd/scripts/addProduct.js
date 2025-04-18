@@ -1,9 +1,10 @@
+const modal = document.getElementById("addProjectModal");
+const openBtn = document.getElementById("add-product-button");
+const closeBtn = document.querySelector(".closeBtn");
+
+
 document.addEventListener("DOMContentLoaded" , () => {
   
-  const modal = document.getElementById("addProjectModal");
-  const openBtn = document.getElementById("add-product-button");
-  const closeBtn = document.querySelector(".closeBtn");
-
   openBtn.onclick = () => {
     modal.style.display = "block";
     document.body.classList.add("modal-open"); 

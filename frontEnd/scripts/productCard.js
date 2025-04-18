@@ -21,7 +21,7 @@ export default function productCard(product){
 
         </p>`;
         card.onclick = () => {
-            window.location.href = `/pages/product/${product.productId}`;
+            window.location.href = `/product/${product.productId}`;
         }
     return card;
 }

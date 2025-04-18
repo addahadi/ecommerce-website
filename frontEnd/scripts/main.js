@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded' , async () => {
   
   try {
 
-    const response = await fetch("http://localhost:8090/product/getall" , {
+    const response = await fetch("http://localhost:8090/products/getall" , {
       method : 'GET',
       credentials :"include"
     })
