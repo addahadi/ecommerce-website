@@ -5,10 +5,10 @@ function createNavbar() {
   
     return `
         <nav class="navbar">
-           <div class="logo">
+           <a href="/main" class="logo">
              <img  src="/assests/icons/logo.svg" width="40px"  />
              <h2>Exclusive</h2>
-           </div>
+           </a>
 
            <ul class="list">
             <li>

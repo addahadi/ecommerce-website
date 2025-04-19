@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/styles/yyy.css">
     <link rel="stylesheet" href="/styles/header.css">
     <link rel="stylesheet" href="/styles/footer.css" >
+    <link rel="stylesheet" href="/styles/yyy.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Havic HV G-92 Gamepad</title>
@@ -22,43 +22,43 @@
         </div>
         <div class="info">
             <div class="details">
-                <h1 id="title">Havic HV G-92 Gamepad</h1>
+                <h1 id="title"></h1>
                 <p class="rating" id="rating">⭐⭐⭐⭐⭐ <span>(150 Reviews)</span> | <span class="stock">In Stock</span></p>
                 <p class="price" id="price">$192.00</p>
                 <p class="description" id="description">
-                    PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.
                 </p>
                 <div class="purchase">
-                    <input type="number" value="2" min="1">
                     <button class="buy-now" id="addToWish">Wish List</button>
                 </div>
             </div>
-            <div class="user-info">
-                <div class="row">
-                    <p>Catégorie</p><span id="category"></span>
-                </div>
-                <div class="row">
-                    <p>Stock</p><span id="stock"></span>
-                </div>
-                <div class="row">
-                    <p>Date</p><span id="date"></span>
-                </div>
-                <div class="row">
-                    <p>Téléphone</p><strong id="phone"></strong>
-                </div>
-                <div class="row">
-                    <p>Facebook</p><strong id="facebook"></strong>
-                </div>
-                <div class="row">
-                    <p>Région</p><strong id="region"></strong>
-                </div>
-            </div>
-        </div>
-        
+            <table class="user-info">
+                <tr class="row">
+                    <td>Category</td>
+                    <td id="category"></td>
+                    <td>Stock</td>
+                    <td id="stock"></td>
+                </tr>
+                
+                <tr class="row">
+                    <td>Date</td>
+                    <td id="date"></td>
+                    <td>Phone</td>
+                    <td id="phone"></td>
+                </tr>
+                <tr class="row">
+                    <td>Facebook</td>
+                    <td id="facebook"></td>
+                    <td>Region</td>
+                    <td id="region"></td>
+                </tr>   
+            </table>
+        </div>        
     </div>
     <div id="footer"></div>
 </body>
 <script src="/scripts/navbar.js"></script>
 <script src="/scripts/product.js"></script>
 <script src="/scripts/footer.js"></script>
+<script src="../scripts/status.js"></script>
+
 </html>

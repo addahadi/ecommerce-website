@@ -1,9 +1,9 @@
-const modal = document.getElementById("addProjectModal");
-const openBtn = document.getElementById("add-product-button");
-const closeBtn = document.querySelector(".closeBtn");
 
 
 document.addEventListener("DOMContentLoaded" , () => {
+  const modal = document.getElementById("addProjectModal");
+  const openBtn = document.getElementById("add-product-button");
+  const closeBtn = document.querySelector(".closeBtn");
   
   openBtn.onclick = () => {
     modal.style.display = "block";
@@ -39,7 +39,7 @@ document.getElementById("addProjectForm").addEventListener("submit", async (e) =
         const category = document.getElementById("category").value.trim();
         const region = document.getElementById("region").value.trim();
         const imges = document.getElementById("images");
-    
+        const modal = document.getElementById("addProjectModal");
         const formData = new FormData();
     
         if (imges.files.length > 0) {
