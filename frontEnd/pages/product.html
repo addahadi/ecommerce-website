@@ -23,12 +23,30 @@
         <div class="info">
             <div class="details">
                 <h1 id="title"></h1>
-                <p class="rating" id="rating">⭐⭐⭐⭐⭐ <span>(150 Reviews)</span> | <span class="stock">In Stock</span></p>
+                <div class="rating" id="rating">
+                    <span class="rated" data-value="1">&#9733;</span>
+                    <span class="rated" data-value="2">&#9733;</span>
+                    <span class="rated" data-value="3">&#9733;</span>
+                    <span class="rated" data-value="4">&#9733;</span>
+                    <span class="rated" data-value="5">&#9733;</span>
+                    <span id="review"></span> | <span class="stock">In Stock</span>
+                
+                </div>
                 <p class="price" id="price">$192.00</p>
                 <p class="description" id="description">
                 </p>
                 <div class="purchase">
                     <button class="buy-now" id="addToWish">Wish List</button>
+                    <button class="rate" id="rate">
+                        <img src="/assests/icons/heart.svg" width="20" />
+                    </button>
+                    <div class="stars" id="starRating" >
+                        <span class="star" data-value="1">&#9733;</span>
+                        <span class="star" data-value="2">&#9733;</span>
+                        <span class="star" data-value="3">&#9733;</span>
+                        <span class="star" data-value="4">&#9733;</span>
+                        <span class="star" data-value="5">&#9733;</span>
+                    </div>
                 </div>
             </div>
             <table class="user-info">
@@ -59,6 +77,6 @@
 <script src="/scripts/navbar.js"></script>
 <script src="/scripts/product.js"></script>
 <script src="/scripts/footer.js"></script>
-<script src="../scripts/status.js"></script>
+<script src="../scripts/rate.js"></script>
 
 </html>

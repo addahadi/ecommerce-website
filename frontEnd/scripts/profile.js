@@ -1,4 +1,3 @@
-import {validateLoginForm} from "../utils/util.js"
 
 
 const listItems = document.querySelectorAll(".sidebar li")
@@ -9,19 +8,22 @@ let userData = {}
 
 
 document.addEventListener("DOMContentLoaded" , async () => {
+  console.log("hihihihihihihihhihihhih")
   try {
     const response = await fetch("http://localhost:8090/auth/me" , {
       method:"GET",   
       credentials:"include"
     })
-    const result = await response.json()
-    console.log(result)
-    if(result){
-      userData = result
-      populateUserInfo(result);
-    }
-    if(result.role == "seller"){
-      document.getElementById("seller-section").style.display = "block"
+    if(response.ok){
+      const  result = await response.json();
+      console.log(result);
+      if (result) {
+        userData = result;
+        populateUserInfo(result);
+        if(result.role == "seller"){
+          document.getElementById("seller-section").style.display = "block"
+        }
+      }
     }
   }
   catch(err){
@@ -39,12 +41,13 @@ function populateUserInfo (data){
     "name" : data.username,
     "email" : data.email,
     "phone" : "******",
-    "store-name" : data.store_name,
-    "store-phone" : data.phone_number,
-    "store-logo" : data.store_logo
+    "store-name" : data.store_name && data.store_name,
+    "store-phone" : data.phone_number && data.phone_number,
+    "store-logo" : data.store_logo && data.store_logo
   }
   for(const Id in mapping){
     const element = document.getElementById(Id)
+    console.log(mapping[Id])
     if(element){
       if(Id == "store-logo"){
         element.src = `../server/uploads/${mapping[Id]}`;

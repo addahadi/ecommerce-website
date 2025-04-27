@@ -18,7 +18,6 @@ const addNewProduct  = (req , res) => {
         const imgData = fileArray.map((file) => [file.filename , productId])
         db.query(query , [imgData] , (err , result) => {
             if (err) {
-               console.error("❌ Error inserting images:", err);
                return res.status(500).send("Error saving images.");
             }
   
@@ -71,6 +70,43 @@ function getProducts(req,res){
 }
 
 
+
+function rateProduct(req , res) {
+      
+    const { productId, rating , userId } = req.body;
+    
+    const query = `INSERT INTO product_rating (userId, productId, rating)
+    VALUES (?, ?, ?)
+    ON DUPLICATE KEY UPDATE rating = ?, updated_at = CURRENT_TIMESTAMP;`;
+
+    db.query(query, [userId, productId, rating, rating], (err) => {
+    if (err) {
+        console.log(err)
+        return res.json({ message: "failed to rate" });
+    }
+    res.json({ message: "successful rate" });
+    });
+
+    
+}
+
+function getRating(req, res) {
+    const {productId} = req.body
+    console.log(productId)
+    const query = `SELECT AVG(rating) AS average , COUNT(*) AS total FROM product_rating WHERE productId = ?`
+    db.query(query , [productId] , (err , result) => {
+        if(err){
+            return res.json({message : err})
+        }
+        console.log(result)
+        res.json({
+            average: parseFloat(result[0].average).toFixed(1),
+            total: result[0].total,
+        })        
+    })
+}
+
+
 function getProduct(req , res) {
     const { productId } = req.body;
     
@@ -89,12 +125,10 @@ function getProduct(req , res) {
             for(img of images){
                 imgList.push(img["img_url"])
             }
-            console.log(imgList)
             const Data = {
                 ...productResult[0],
                 imges : imgList
             }
-            console.log(Data)
             res.json({state : true , data:Data});
                  })
 
@@ -103,5 +137,5 @@ function getProduct(req , res) {
 
 
 
-module.exports = {addNewProduct , getProducts , getProduct}
+module.exports = { addNewProduct, getProducts, getProduct, rateProduct , getRating};
 

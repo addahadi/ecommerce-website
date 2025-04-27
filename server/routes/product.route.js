@@ -1,7 +1,7 @@
 
 const express = require("express")
 const router = express.Router()
-const {addNewProduct , getProduct , getProducts} = require("../controller/product.controller")
+const {addNewProduct , getProduct , getProducts , rateProduct , getRating} = require("../controller/product.controller")
 
 const upload = require("../middleware")
 
@@ -22,19 +22,16 @@ router.post('/add' , upload.array("images") ,(req , res) => {
 
 
 router.post('/rate' , (req , res) => {
-    const {productId , rating , userId} = req.body;
-    const query = `INSERT INTO product_ratings (userId, productId, rating)
-    VALUES (?, ?, ?)
-    ON DUPLICATE KEY UPDATE rating = ?, updated_at = CURRENT_TIMESTAMP;`
-
-    db.query(query , [userId , productId , rating , rating] , (err) => {
-        if(err){
-            return res.json({message : "failed to rate"})
-        }
-        res.json({message : "successful rate"})
-    })
+    if(!req.session.user){
+       return res.json({error : "you are not allowed to rate"});
+    }
+    rateProduct(req , res)
 })
 
+
+router.post('/getrating' , (req , res) => {
+    getRating(req , res)
+})
 
 
 router.get('/getall',(req , res) => {

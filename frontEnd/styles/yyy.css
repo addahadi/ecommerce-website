@@ -1,6 +1,7 @@
 :root {
   --primary-color : #0D47A1 ; 
   --secondary-color : #242424;
+  --hover-color: #1d58b0;
 }
 
 body {
@@ -43,6 +44,23 @@ body {
   gap: 0.5rem;
   justify-content: start;
 }
+
+.rate {
+  padding: 10px;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.rate:hover , .rate:active{
+  background-color: var(--hover-color);
+}
+
+
+
 .thumbnails img {
   width: 7rem;
   height: 7rem;
@@ -73,12 +91,16 @@ body {
 
 
 
+
+
+
 .price {
   font-size: 2rem;
   color: var(--secondary-color);
 
   margin: 1rem 0;
 }
+
 .description {
   color: var(--secondary-color);
   line-height: 1.6;
@@ -86,7 +108,59 @@ body {
 
 .purchase {
   margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  width: fit-content;
 }
+
+
+
+
+
+.stars {
+  flex-direction: row;
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  background-color: #E0F7FA;
+  top: -65px;
+  right: 0px;
+  padding: 12px;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  display: none;
+}
+
+.star {
+  color: #ccc;
+  transition: color 0.2s;
+  font-size: 23px;
+  text-shadow: 0 0 2px #333;
+  
+}
+
+
+.rated {
+  color: #ccc;
+  transition: color 0.2s;
+  font-size: 23px;
+  text-shadow: 0 0 2px #333;
+}
+.rated.hover,
+.rated.selected {
+  color: gold;
+}
+
+
+.star.hover,
+.star.selected {
+  color: gold;
+}
+
+
+
 .buy-now {
   background: var(--primary-color);
   color: white;
@@ -96,6 +170,8 @@ body {
   font-size: 1rem;
   cursor: pointer;
 }
+
+
 .buy-now:hover {
   background: var(--primary-color);
 }

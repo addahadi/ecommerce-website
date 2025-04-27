@@ -57,6 +57,11 @@ const GetUserInfo = async (req , res) => {
         res.status(200).json(result)
 
       })
+    }else{
+      const result = {
+        ...result1[0]
+      }
+      res.status(200).json(result)
     }
   })  
 }

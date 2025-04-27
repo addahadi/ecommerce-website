@@ -77,3 +77,55 @@ function showProductInfo(data){
     });
 }
 
+document.addEventListener("DOMContentLoaded" , () => {
+    const stars = document.querySelectorAll(".star");
+    const rateButton = document.getElementById("rate");
+    const rateContainer = document.getElementById("starRating");
+    
+    let selectedStarValue = 0;
+    let t = 0;
+    rateButton.addEventListener("click" , () => {
+        t++;
+        if(t%2 != 0){
+            rateContainer.style.display = "flex";
+        }
+        else rateContainer.style.display = "none";
+    })
+
+
+    stars.forEach((star) => {
+        star.addEventListener("mouseover", () => {
+             highlightStars(star.dataset.value)
+            
+        })
+        star.addEventListener("mouseout", () => {
+          deHighlightStar(star.dataset.value);
+        });
+        star.addEventListener("click" , () => {
+            console.log("hihhih")
+            selectedStarValue = star.dataset.value
+            SelectedStar()
+        })
+    })
+    function highlightStars(value) {
+        stars.forEach((star) => {
+            if(star.dataset.value <= value){
+              star.classList.add("hover");
+            }
+        })
+    }
+
+    function deHighlightStar(value){
+        stars.forEach((star) => {
+            if(star.dataset.value <= value){
+                star.classList.remove("hover");
+            }
+        })
+    }
+    function SelectedStar() {
+        stars.forEach((star) => {
+            star.classList.remove("selected")
+            if(star.dataset.value <= selectedStarValue) star.classList.add("selected")
+        })
+    }
+})

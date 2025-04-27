@@ -26,3 +26,4 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.error("Error checking auth status:", error);
   }
 });
+
