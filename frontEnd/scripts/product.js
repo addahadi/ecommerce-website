@@ -1,24 +1,32 @@
+let result
+
+
 document.addEventListener("DOMContentLoaded" , async () => {
+    await Status()
+    await getProduct()
+    StartRating()
+    addToWishList()
+})
+
+
+async function Status (){
     try {
         const response = await fetch("http://localhost:8090/auth/status" , {
             method : "GET",
             credentials:'include'
         });
-        const result = await response.json()
+        result = await response.json()
         if(result.loggedIn){
             document.getElementById("profile-button").style.display = "block";
             document.getElementById("Login-button").style.display = "none";
         }
     }
-
     catch(err) {
         console.log(err)
     }
-})
+}
 
-
-document.addEventListener("DOMContentLoaded" , async () => {
-    
+async function getProduct(){
     const path = window.location.pathname;
 
     const parts = path.split("/");
@@ -50,7 +58,7 @@ document.addEventListener("DOMContentLoaded" , async () => {
     catch(err) {
         console.log(err)
     }
-})
+}
 
 
 function showProductInfo(data){
@@ -77,55 +85,90 @@ function showProductInfo(data){
     });
 }
 
-document.addEventListener("DOMContentLoaded" , () => {
+
+function StartRating(){
     const stars = document.querySelectorAll(".star");
     const rateButton = document.getElementById("rate");
     const rateContainer = document.getElementById("starRating");
-    
+
     let selectedStarValue = 0;
     let t = 0;
-    rateButton.addEventListener("click" , () => {
-        t++;
-        if(t%2 != 0){
-            rateContainer.style.display = "flex";
-        }
-        else rateContainer.style.display = "none";
-    })
-
+    rateButton.addEventListener("click", () => {
+      t++;
+      if (t % 2 != 0) {
+        rateContainer.style.display = "flex";
+      } else rateContainer.style.display = "none";
+    });
 
     stars.forEach((star) => {
-        star.addEventListener("mouseover", () => {
-             highlightStars(star.dataset.value)
-            
-        })
-        star.addEventListener("mouseout", () => {
-          deHighlightStar(star.dataset.value);
-        });
-        star.addEventListener("click" , () => {
-            console.log("hihhih")
-            selectedStarValue = star.dataset.value
-            SelectedStar()
-        })
-    })
+      star.addEventListener("mouseover", () => {
+        highlightStars(star.dataset.value);
+      });
+      star.addEventListener("mouseout", () => {
+        deHighlightStar(star.dataset.value);
+      });
+      star.addEventListener("click", () => {
+        console.log("hihhih");
+        selectedStarValue = star.dataset.value;
+        SelectedStar();
+      });
+    });
     function highlightStars(value) {
-        stars.forEach((star) => {
-            if(star.dataset.value <= value){
-              star.classList.add("hover");
-            }
-        })
+      stars.forEach((star) => {
+        if (star.dataset.value <= value) {
+          star.classList.add("hover");
+        }
+      });
     }
 
-    function deHighlightStar(value){
-        stars.forEach((star) => {
-            if(star.dataset.value <= value){
-                star.classList.remove("hover");
-            }
-        })
+    function deHighlightStar(value) {
+      stars.forEach((star) => {
+        if (star.dataset.value <= value) {
+          star.classList.remove("hover");
+        }
+      });
     }
     function SelectedStar() {
-        stars.forEach((star) => {
-            star.classList.remove("selected")
-            if(star.dataset.value <= selectedStarValue) star.classList.add("selected")
-        })
+      stars.forEach((star) => {
+        star.classList.remove("selected");
+        if (star.dataset.value <= selectedStarValue)
+          star.classList.add("selected");
+      });
     }
-})
+}
+
+
+
+
+function addToWishList(){
+    const WishButton = document.getElementById("addToWish");
+    const path = window.location.pathname;
+
+    const parts = path.split("/");
+
+    const productId = parts[parts.length - 1];
+    console.log("yesyeyseys")
+
+    WishButton.addEventListener("click", async () => {
+        try {
+          const requestBody = {
+            productId,
+          };
+          console.log(requestBody)
+          const response = await fetch("http://localhost:8090/wishlists/addWishlist", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestBody),
+          });
+          if (response.ok) {
+            const result = await response.json();
+            console.log(result);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    );
+}

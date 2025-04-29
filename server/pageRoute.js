@@ -21,7 +21,9 @@ router.get("/product/:productId", (req, res) => {
 });
 
 
-
+router.get("/wishlist" , (req , res) => {
+  res.sendFile(path.join(__dirname, "../frontEnd/pages/wishlist.html"));
+})
 
 
 module.exports = router

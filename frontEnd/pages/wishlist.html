@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Wishlist</title>
+  <link rel="stylesheet" href="../styles/wishlist.css" />
+  <link rel="stylesheet" href="../styles/header.css" />
+  <link rel="stylesheet" href="../styles/footer.css"/>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div id="navbar"></div>
+  <main class="mainContainer">
+
+    <h2>Wishlist</h2>
+    <table id="wishlist">
+      <thead>
+        <tr>
+          <th>PRODUCTS</th>
+          <th>PRICE</th>
+          <th>STOCK STATUS</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  
+    <template id="row-tpl">
+      <tr>
+        <td class="product">
+          <img />
+          <span class="name"></span>
+        </td>
+        <td class="price"></td>
+        <td class="stock"></td>
+        <td class="actions">
+          <button class="add-cart">ADD TO CART 🛒</button>
+          <button class="remove">&times;</button>
+        </td>
+      </tr>
+    </template>
+  </main>
+  <div id="footer"></div>
+</body>
+    <script src="../scripts/footer.js"></script>
+    <script src="../scripts/navbar.js"></script>
+</html>
