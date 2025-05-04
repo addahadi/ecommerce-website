@@ -122,10 +122,12 @@ color: white ;
     display: flex;
     align-items: center;
     gap: 8px;
+    text-decoration: none;
+
 }
 
 
 .logo h2 {
     color: #242424;
-    font-weight: 600;
+    font-weight: 400;
 }

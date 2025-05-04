@@ -39,8 +39,8 @@ router.get('/getall',(req , res) => {
 })
 
 
+
 router.post('/get' , (req , res) => {
-    console.log(req.body);
     getProduct(req , res)
 })
 

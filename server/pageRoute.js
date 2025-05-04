@@ -26,4 +26,9 @@ router.get("/wishlist" , (req , res) => {
 })
 
 
+router.get("/search" , (req , res) => {
+  res.sendFile(path.join(__dirname , "../frontEnd/pages/search.html"));
+})
+
+
 module.exports = router

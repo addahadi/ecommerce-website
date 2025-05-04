@@ -3,89 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Electronics Store</title>
-  <link rel="stylesheet" href="../styles/product.css">
+  
+  <link rel="stylesheet" href="../styles/header.css">
+  <link rel="stylesheet" href="../styles/footer.css">
+  <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <title>Search</title>
+  <link rel="stylesheet" href="../styles/search.css">
 </head>
 <body>
 
-<div class="container">
+
+  <div id="navbar"></div>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="filter-section">
+        <h3>CATEGORY</h3>
+        <label><input type="radio" name="category"> Computer & Laptop</label>
+        <label><input type="radio" name="category"> Computer Accessories</label>
+        <label><input type="radio" name="category"> SmartPhone</label>
+        <label><input type="radio" name="category"> Headphone</label>
+        <label><input type="radio" name="category"> Gaming Console</label>
+      </div>
+
+      <div class="filter-section">
+        <h3>PRICE RANGE</h3>
+        <label><input type="radio" name="price"> All Price</label>
+        <label><input type="radio" name="price"> Under $20</label>
+        <label><input type="radio" name="price"> $25 to $100</label>
+        <label><input type="radio" name="price"> $100 to $300</label>
+        <label><input type="radio" name="price"> $300 to $500</label>
+    
+      </div>
+
+      <div class="filter-section">
+        <h3>POPULAR REGIONS</h3>
+        <label><input type="checkbox" checked> Tiaret</label>
+        <label><input type="checkbox" checked> Oran</label>
+        <label><input type="checkbox"> Alger</label>
+        <label><input type="checkbox" checked> Tlemcan</label>
+        
+      </div>
+    </aside>
 
   
-  <aside class="sidebar">
-    <div class="filter-section">
-      <h3>CATEGORY</h3>
-      <label><input type="radio" name="category" checked> Electronics Devices</label>
-      <label><input type="radio" name="category"> Computer & Laptop</label>
-      <label><input type="radio" name="category"> Computer Accessories</label>
-      <label><input type="radio" name="category"> SmartPhone</label>
-      <label><input type="radio" name="category"> Headphone</label>
-      <label><input type="radio" name="category"> Mobile Accessories</label>
-      <label><input type="radio" name="category"> Gaming Console</label>
-      <label><input type="radio" name="category"> Camera & Photo</label>
-      <label><input type="radio" name="category"> TV & Home Appliances</label>
-      <label><input type="radio" name="category"> Watches & Accessories</label>
-      <label><input type="radio" name="category"> GPS & Navigation</label>
-      <label><input type="radio" name="category"> Wearable Technology</label>
-    </div>
-
-    <div class="filter-section">
-      <h3>PRICE RANGE</h3>
-      <input type="text" placeholder="Min price">
-      <input type="text" placeholder="Max price">
-      <label><input type="radio" name="price"> All Price</label>
-      <label><input type="radio" name="price"> Under $20</label>
-      <label><input type="radio" name="price"> $25 to $100</label>
-      <label><input type="radio" name="price"> $100 to $300</label>
-      <label><input type="radio" name="price"> $300 to $500</label>
-      <label><input type="radio" name="price"> $500 to $1000</label>
-      <label><input type="radio" name="price"> $1,000 to $10,000</label>
-    </div>
-
-    <div class="filter-section">
-      <h3>POPULAR BRANDS</h3>
-      <label><input type="checkbox" checked> Apple</label>
-      <label><input type="checkbox" checked> Google</label>
-      <label><input type="checkbox"> Microsoft</label>
-      <label><input type="checkbox" checked> Samsung</label>
-      <label><input type="checkbox"> Dell</label>
-      <label><input type="checkbox" checked> HP</label>
-      <label><input type="checkbox"> Symphony</label>
-      <label><input type="checkbox" checked> Xiaomi</label>
-      <label><input type="checkbox"> Sony</label>
-      <label><input type="checkbox"> Panasonic</label>
-      <label><input type="checkbox" checked> LG</label>
-      <label><input type="checkbox"> Intel</label>
-      <label><input type="checkbox"> One Plus</label>
-    </div>
-  </aside>
-
- 
-  <main class="main-content">
-    <div class="top-bar">
-      <input type="text" placeholder="Search for anything...">
-      <div class="filters-info">
-        <strong>Active Filters:</strong>
-        <span class="tag">Electronics Devices</span>
-        <span class="tag">5 Star Rating</span>
+    <main class="main-content">
+      <div class="top-bar">
+        <input type="text" placeholder="Search for anything...">
+        <div class="filters-info">
+          <strong>Active Filters:</strong>
+          <span class="tag">Electronics Devices</span>
+          <span class="tag">5 Star Rating</span>
+        </div>
+        <div class="sort-by">
+          <label>Sort by:</label>
+          <select>
+            <option>Most liked</option>
+            <option>Lowest Price</option>
+            <option>Highest Rating</option>
+          </select>
+        </div>
+        <span class="results-count">0 Results Found</span>
       </div>
-      <div class="sort-by">
-        <label>Sort by:</label>
-        <select>
-          <option>Most Popular</option>
-          <option>Lowest Price</option>
-          <option>Highest Rating</option>
-        </select>
+      <div id="Explore-container">
+
       </div>
-      <span class="results-count">0 Results Found</span>
-    </div>
-
-    
-
-    </div>
-  </main>
-
-</div>
+      
+    </main>
+  </div>
+  <div id="footer"></div>
+<script src="../scripts/navbar.js"></script>
 <script src="../scripts/status.js"></script>
-
+<script src="../scripts/footer.js"></script>
+<script type="module" src="../scripts/main.js"></script>
 </body>
 </html>

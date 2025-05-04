@@ -1,11 +1,16 @@
-let result
+import { showToast } from "/utils/util.js"
 
+
+
+let result
+let added
 
 document.addEventListener("DOMContentLoaded" , async () => {
     await Status()
     await getProduct()
+    await fetchWishList();
     StartRating()
-    addToWishList()
+    toggleToWishList()
 })
 
 
@@ -51,6 +56,7 @@ async function getProduct(){
         });
         if(response.ok){
             const result = await response.json()
+            console.log(result)
             const {data} = result
             showProductInfo(data)
         }
@@ -69,6 +75,9 @@ function showProductInfo(data){
     document.getElementById("date").textContent = data.created_at;
     document.getElementById("stock").textContent = data.stock;
     document.getElementById("category").textContent = data.category;
+    document.getElementById("facebook").href = data.facebook;
+    document.getElementById("phone").textContent = data.phone_number
+    document.getElementById("region").textContent = data.region
 
     const thumbnail = document.getElementById("thumbnails");
     thumbnail.innerHTML = ""; 
@@ -84,6 +93,12 @@ function showProductInfo(data){
         thumbnail.appendChild(imgContainer);
     });
 }
+
+
+
+
+
+
 
 
 function StartRating(){
@@ -138,34 +153,83 @@ function StartRating(){
 }
 
 
+async function fetchWishList(){
+  const path = window.location.pathname;
+  const parts = path.split("/");
+  const productId = parts[parts.length - 1];
+  const WishButton = document.getElementById("addToWish");
 
 
-function addToWishList(){
+
+
+
+  try{
+    const respence = await fetch("http://localhost:8090/wishlists/get" , {
+      method : "GET",
+      credentials : "include"
+    });
+    if(respence.ok){
+      const result = await respence.json()
+      console.log();
+      if (!result.data.includes(parseInt(productId))) {
+        
+        WishButton.innerText = "🤍 Wish List";
+        added = false;
+      } else {
+        WishButton.innerText = "❤️ Added";
+        added = true;
+      }
+    }
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+
+
+
+function toggleToWishList(){
     const WishButton = document.getElementById("addToWish");
+    const toast = document.getElementById("toast")
+    
     const path = window.location.pathname;
-
     const parts = path.split("/");
-
     const productId = parts[parts.length - 1];
-    console.log("yesyeyseys")
-
+  
     WishButton.addEventListener("click", async () => {
         try {
-          const requestBody = {
-            productId,
-          };
-          console.log(requestBody)
-          const response = await fetch("http://localhost:8090/wishlists/addWishlist", {
+          
+          const url = added ? `http://localhost:8090/wishlists/delWishlist`
+            : "http://localhost:8090/wishlists/addWishlist";
+
+        
+          const response = await fetch(url, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(requestBody),
+            credentials: "include",
+            body: JSON.stringify({ productId }),
           });
+
           if (response.ok) {
             const result = await response.json();
-            console.log(result);
+              showToast(
+                result.status
+                  ? "Added to wish-list ✔️"
+                  : "Removed from wish-list ❌"
+               , toast);
+              
+               if (result.status) {
+                 WishButton.innerText = "❤️ Added";
+                 added = true;
+               } else {
+                 WishButton.innerText = "🤍 Wish List";
+                 added = false;
+               }
           }
+
         } catch (err) {
           console.log(err);
         }

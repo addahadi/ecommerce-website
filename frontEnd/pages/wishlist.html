@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -6,42 +5,36 @@
   <link rel="stylesheet" href="../styles/wishlist.css" />
   <link rel="stylesheet" href="../styles/header.css" />
   <link rel="stylesheet" href="../styles/footer.css"/>
-  <script defer src="app.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="navbar"></div>
   <main class="mainContainer">
 
-    <h2>Wishlist</h2>
-    <table id="wishlist">
-      <thead>
-        <tr>
-          <th>PRODUCTS</th>
-          <th>PRICE</th>
-          <th>STOCK STATUS</th>
-          <th>ACTIONS</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <h2 class="wishlist-header">Wishlist</h2>
+    <section class="table-section">
+      <table id="wishlist">
+        <thead>
+          <tr>
+            <th>PRODUCTS</th>
+            <th>PRICE</th>
+            <th>STOCK STATUS</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody  id="row-tpl">
+           
+        </tbody>
+      </table>
+
+    </section>
   
-    <template id="row-tpl">
-      <tr>
-        <td class="product">
-          <img />
-          <span class="name"></span>
-        </td>
-        <td class="price"></td>
-        <td class="stock"></td>
-        <td class="actions">
-          <button class="add-cart">ADD TO CART 🛒</button>
-          <button class="remove">&times;</button>
-        </td>
-      </tr>
-    </template>
   </main>
   <div id="footer"></div>
 </body>
     <script src="../scripts/footer.js"></script>
     <script src="../scripts/navbar.js"></script>
+    <script src="../scripts/status.js"></script>
+    <script  type="module"  src="../scripts/wishlist.js"></script>
+    <script type="module" src="../scripts/wishListCard.js"></script>
 </html>

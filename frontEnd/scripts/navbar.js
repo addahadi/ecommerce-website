@@ -33,7 +33,7 @@ function createNavbar() {
                 </div>
             </li>
             <li>
-                <a>
+                <a href="/wishlist">
                     <img src="/assests/icons/cart.svg" alt="cart" width="22px"/>
                 </a>
             </li>

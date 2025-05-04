@@ -1,4 +1,7 @@
 
+body {
+  font-family: "Noto Sans", serif;
+}
 main {
     max-width: 1200px;
     margin-top:100px ;
@@ -33,6 +36,7 @@ main {
     text-align: center;
     width: 120px;
     transition: 0.3s;
+    text-decoration: none;
 }
 .category-card:hover {
     transform: scale(1.05);
@@ -110,13 +114,6 @@ main {
   font-weight: 500;
   color: #0D47A1;
   margin-right: 8px;
-}
-
-
-.stars i {
-  color: #ffc107;
-  margin: 0 1px;
-  font-size: 1.2rem;
 }
 
 

@@ -24,17 +24,3 @@ document.addEventListener('DOMContentLoaded' , async () => {
   }
 })
 
-
-
-
-function generateStars(rating) {
-  const starContainer = document.getElementById('starRating');
-  starContainer.innerHTML = ''; // clear old stars
-
-  for (let i = 1; i <= 5; i++) {
-    const starIcon = document.createElement('i');
-    starIcon.className = i <= rating ? 'fas fa-star' : 'far fa-star';
-    starContainer.appendChild(starIcon);
-  }
-}
-

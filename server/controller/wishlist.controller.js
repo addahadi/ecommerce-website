@@ -12,38 +12,52 @@ function addWishlist(req ,res){
         if(err){
             return res.json({message : err})
         }
+        res.status(200).json({status : true})
     })
 }
 
 
 
 function delWishlist(req , res){
-    const id = req.params.id;
-    const userId = req.session.user.Id
-    
-    const query = 'DELETE FROM wishlists WHERE id = ? AND user_id = ?'
+    const { productId } = req.body;
+    const userId = req.session.user.Id;
 
-    db.query(query , [id , userId] , (err) => {
-        if(err){
-            res.json({error : err})
-        }
-        res.status(204).json({message : "the message is deleted successfuly"})
-    })
-
+    const query = "DELETE FROM wishlists WHERE product_id = ? AND user_id = ?";
+    db.query(query, [productId, userId], (err) => {
+      if (err) {
+        return res.status(500).json({ error: "Error happened during delete" });
+      }
+      return res.status(200).json({ status: false }); 
+    });
 
 }
 
-
-function getWishlist(res , req){
+function getWishlist(req , res){
     const userId = req.session.user.Id;
-    const query = "SELECT p.* , w.id AS WishlistId FROM wishlists AS w JOIN product AS p ON p.id = w.product_id WHERE w.user_id = ?"
+    const query = "SELECT product_id FROM wishlists WHERE user_id = ?"
+    
+    db.query(query , [userId] , (err , respence) => {
+        if(err){
+            return res.json({message : err})
+        }
+        const result = respence.map((r) => {
+            return r.product_id
+        })
+        res.json({data : result})
+    })
+}
+
+
+function getWishlists(req, res){
+    const userId = req.session.user.Id;
+    const query = "SELECT p.* , w.id AS WishlistId FROM wishlists AS w JOIN product AS p ON p.productId = w.product_id WHERE w.user_id = ?"
 
     db.query(query , [userId] , (err , result) => {
         if(err){
             return res.json({error : err})
         }
-        console.log(result[0])
+        res.json({data : [...result]})
     })
 }
 
-module.exports = {addWishlist , getWishlist , delWishlist}
+module.exports = {addWishlist , getWishlist , delWishlist , getWishlists}

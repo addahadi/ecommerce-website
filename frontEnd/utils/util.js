@@ -47,3 +47,12 @@ export function validateLoginForm(email , password){
 }
 
 
+
+
+export function showToast(msg , toast) {
+  toast.textContent = msg;
+  toast.hidden = false;
+  setTimeout(() => (toast.hidden = true), 1800);
+}
+
+

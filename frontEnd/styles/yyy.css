@@ -160,21 +160,35 @@ body {
 }
 
 
+.buy-now{
+  background:#0B56B6;            /* same royal-blue */
+  color:#fff;
+  padding:.65rem 1.8rem;
+  border:none;
+  border-radius:12px;
+  font-family:inherit;
+  font-size:1rem;
+  cursor:pointer;
+  transition:
+    background .25s ease,
+    transform  .15s ease,
+    box-shadow .25s ease;
+}
 
-.buy-now {
-  background: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 10px;
-  font-size: 1rem;
-  cursor: pointer;
+/* hover state */
+.buy-now:hover{
+  background:#0D67D6;            /* a bit lighter */
+  transform:translateY(-2px);    /* lift */
+  box-shadow:0 4px 12px rgba(0,0,0,.2);
+}
+
+/* active / pressed */
+.buy-now:active{
+  transform:translateY(0);
+  box-shadow:0 1px 4px rgba(0,0,0,.2);
 }
 
 
-.buy-now:hover {
-  background: var(--primary-color);
-}
 
 .user-info {
   border-collapse: collapse;

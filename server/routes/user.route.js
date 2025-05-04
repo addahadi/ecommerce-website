@@ -36,7 +36,6 @@ router.get("/status" , (req , res) => {
 
 
 router.get("/me" , (req , res) => {
-    console.log(req.session.user)
     if(!req.session.user.Id){
         return res.json({error : "not logged In"})
     }
@@ -68,7 +67,6 @@ router.post("/updatestore" , upload.single('image'), (req , res) => {
     if(!req.session.user.Id || !req.session.user.role == 'seller'){
         return res.json({error : "unAuth"})
     }
-    console.log(req.body)
     UpdateStoreInfo(req , res)
 })
 

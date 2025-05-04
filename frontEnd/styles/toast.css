@@ -1,0 +1,10 @@
+#toast{ 
+    position:fixed; 
+    bottom:1.4rem; 
+    left:50%;
+    transform:translateX(-50%);
+    background:#333; 
+    color:#fff; 
+    padding:.6rem 1.2rem;
+    border-radius:8px; font-size:.9rem; 
+}

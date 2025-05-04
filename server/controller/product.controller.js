@@ -4,12 +4,13 @@ const db = require("../db")
 
 
 const addNewProduct  = (req , res) => {
-    const {title , desc , category , price , stock, region} = req.body
+    const {title , desc , category , price , stock, region , facebook} = req.body
+    const userId = req.session.user.Id;
     const fileArray = req.files
     const query =
-      "INSERT INTO product (title, descr, category, price , stock , region , rating) VALUES (?, ?, ?, ?, ?, ? , ?)";
+      "INSERT INTO product (title, descr, category, price , stock , region , rating , facebook , userId) VALUES (?, ?, ?, ?, ?, ? ,? , ? , ?)";
     
-    db.query(query , [title , desc , category , price , stock , region , 0] , (err , result) => {
+    db.query(query , [title , desc , category , price , stock , region , 0 , facebook , userId] , (err , result) => {
         if(err){
             return res.status(500).json({error : err})
         }
@@ -57,7 +58,6 @@ function getProducts(req,res){
         })
         Promise.all(promise).then((result) => {
             
-            console.log(result);
             res.json({
                success: true,
                data: result,
@@ -81,7 +81,6 @@ function rateProduct(req , res) {
 
     db.query(query, [userId, productId, rating, rating], (err) => {
     if (err) {
-        console.log(err)
         return res.json({ message: "failed to rate" });
     }
     res.json({ message: "successful rate" });
@@ -92,13 +91,11 @@ function rateProduct(req , res) {
 
 function getRating(req, res) {
     const {productId} = req.body
-    console.log(productId)
     const query = `SELECT AVG(rating) AS average , COUNT(*) AS total FROM product_rating WHERE productId = ?`
     db.query(query , [productId] , (err , result) => {
         if(err){
             return res.json({message : err})
         }
-        console.log(result)
         res.json({
             average: parseFloat(result[0].average).toFixed(1),
             total: result[0].total,
@@ -110,7 +107,10 @@ function getRating(req, res) {
 function getProduct(req , res) {
     const { productId } = req.body;
     
-    const query = 'SELECT * FROM product WHERE productId = ?'
+    const query = `SELECT product.*, phone_number
+                   FROM product, seller
+                   WHERE product.userId = seller.user_Id
+                   AND product.productId = ?`
     db.query(query , [productId] , (err , productResult) => {
         if(err){
            return res.json({message : err})

@@ -40,6 +40,7 @@ document.getElementById("addProjectForm").addEventListener("submit", async (e) =
         const region = document.getElementById("region").value.trim();
         const imges = document.getElementById("images");
         const modal = document.getElementById("addProjectModal");
+        const facebook = document.getElementById("facebook").value.trim();
         const formData = new FormData();
     
         if (imges.files.length > 0) {
@@ -56,10 +57,11 @@ document.getElementById("addProjectForm").addEventListener("submit", async (e) =
         formData.append("stock", stock);
         formData.append("category", category);
         formData.append("region", region);
+        formData.append("facebook" , facebook)
 
         
         try {
-          const response = await fetch("http://localhost:8090/product/add", {
+          const response = await fetch("http://localhost:8090/products/add", {
             method: "POST",
 
             credentials: "include",
