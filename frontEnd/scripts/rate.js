@@ -1,3 +1,5 @@
+import { showToast } from "../utils/util.js";
+
 let result = null;
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -81,7 +83,6 @@ function showRating(result){
 
 
 
-// ⭐ Setup Rating
 function setupRatingSystem() {
   const stars = document.querySelectorAll(".star");
   if (!stars || !result?.loggedIn) return;
@@ -104,6 +105,7 @@ function setupRatingSystem() {
         };
 
         try {
+          console.log("hooooooooooooooooooooooooooo")
           const response = await fetch("http://localhost:8090/products/rate", {
             method: "POST",
             headers: {
@@ -114,7 +116,10 @@ function setupRatingSystem() {
 
           if (response.ok) {
             const text = await response.text();
-            console.log("Rating response:", text);
+            const toast = document.getElementById("toast")
+            console.log(text)
+            console.log(toast)
+            showToast("you rated the product ✔️" , toast);
           }
         } catch (err) {
           console.error("Rating error:", err);

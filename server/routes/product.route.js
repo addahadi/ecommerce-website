@@ -1,7 +1,7 @@
 
 const express = require("express")
 const router = express.Router()
-const {addNewProduct , getProduct , getProducts , rateProduct , getRating} = require("../controller/product.controller")
+const {addNewProduct , getProduct , getProducts , rateProduct , getRating , filterProduct , GetTopPhone, getLowerComputers} = require("../controller/product.controller")
 
 const upload = require("../middleware")
 
@@ -10,6 +10,7 @@ const upload = require("../middleware")
 
 
 router.post('/add' , upload.array("images") ,(req , res) => {
+    console.log(req.body)
     if(req.session.user && req.session.user.role == "seller"){
         addNewProduct(req , res)
         
@@ -38,6 +39,20 @@ router.get('/getall',(req , res) => {
         getProducts(req , res)
 })
 
+
+router.get('/searchproduct' , (req , res) => {
+    filterProduct(req , res);
+})
+
+router.get('/getlowercomputer', (req ,res) => {
+    getLowerComputers(req , res)
+})
+
+
+
+router.get('/gettopphone',(req , res) => {
+    GetTopPhone(req , res)
+})
 
 
 router.post('/get' , (req , res) => {

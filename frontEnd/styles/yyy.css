@@ -12,7 +12,7 @@ body {
 
 .container {
   display: flex;
-  gap: 4rem;
+  gap: 2rem;
   padding: 2rem;
   max-width: 1200px;
   margin: auto;
@@ -196,7 +196,7 @@ body {
 }
 
 .user-info td {
-  padding: 10px 16px;
+  padding: 4px 8px;
   vertical-align: top;
   font-size: 15px;
   color: #333;

@@ -6,6 +6,7 @@
   
   <link rel="stylesheet" href="../styles/header.css">
   <link rel="stylesheet" href="../styles/footer.css">
+  <link rel="stylesheet" href="../styles/productCard.css">
   <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
   <title>Search</title>
   <link rel="stylesheet" href="../styles/search.css">
@@ -18,30 +19,38 @@
     <aside class="sidebar">
       <div class="filter-section">
         <h3>CATEGORY</h3>
-        <label><input type="radio" name="category"> Computer & Laptop</label>
-        <label><input type="radio" name="category"> Computer Accessories</label>
-        <label><input type="radio" name="category"> SmartPhone</label>
-        <label><input type="radio" name="category"> Headphone</label>
-        <label><input type="radio" name="category"> Gaming Console</label>
+        <label><input type="radio" name="category" value="computer"> Computer & Laptop</label>
+        <label><input type="radio" name="category" value="accessories"> Computer Accessories</label>
+        <label><input type="radio" name="category" value="phone"> SmartPhone</label>
+        <label><input type="radio" name="category" value="headphone"> Headphone</label>
+        <label><input type="radio" name="category" value="console"> Gaming Console</label>
       </div>
 
       <div class="filter-section">
         <h3>PRICE RANGE</h3>
-        <label><input type="radio" name="price"> All Price</label>
-        <label><input type="radio" name="price"> Under $20</label>
-        <label><input type="radio" name="price"> $25 to $100</label>
-        <label><input type="radio" name="price"> $100 to $300</label>
-        <label><input type="radio" name="price"> $300 to $500</label>
-    
+        <label><input type="radio" name="price" value="all"> All Price</label>
+        <label><input type="radio" name="price" value="under20"> Under $20</label>
+        <label><input type="radio" name="price" value="25to100"> $25 to $100</label>
+        <label><input type="radio" name="price" value="100to300"> $100 to $300</label>
+        <label><input type="radio" name="price" value="300to500"> $300 to $500</label>
+        <label><input type="radio" name="price" value="over500"> over $500</label>
+
       </div>
 
       <div class="filter-section">
         <h3>POPULAR REGIONS</h3>
-        <label><input type="checkbox" checked> Tiaret</label>
-        <label><input type="checkbox" checked> Oran</label>
-        <label><input type="checkbox"> Alger</label>
-        <label><input type="checkbox" checked> Tlemcan</label>
-        
+        <label><input type="checkbox" name="region" value="tiaret"> Tiaret</label>
+        <label><input type="checkbox" name="region" value="oran"> Oran</label>
+        <label><input type="checkbox" name="region" value="alger"> Alger</label>
+        <label><input type="checkbox" name="region" value="tlemcan"> Tlemcan</label>
+      </div>
+      <div class="filter-section">
+        <h3>STAR RATING</h3>
+        <label><input type="checkbox" name="star"  value="1"> &#9733; &#9734; &#9734; &#9734; &#9734;</label>
+        <label><input type="checkbox" name="star"  value="2"> &#9733; &#9733; &#9734; &#9734; &#9734;</label>
+        <label><input type="checkbox" name="star"  value="3"> &#9733; &#9733; &#9733; &#9734; &#9734;</label>
+        <label><input type="checkbox" name="star"  value="4"> &#9733; &#9733; &#9733; &#9733; &#9734;</label>
+        <label><input type="checkbox" name="star"  value="5"> &#9733; &#9733; &#9733; &#9733; &#9733;</label>
       </div>
     </aside>
 
@@ -49,22 +58,23 @@
     <main class="main-content">
       <div class="top-bar">
         <input type="text" placeholder="Search for anything...">
-        <div class="filters-info">
+        <div class="filters-info" id="filters-info">
           <strong>Active Filters:</strong>
-          <span class="tag">Electronics Devices</span>
-          <span class="tag">5 Star Rating</span>
+
         </div>
         <div class="sort-by">
           <label>Sort by:</label>
-          <select>
-            <option>Most liked</option>
-            <option>Lowest Price</option>
-            <option>Highest Rating</option>
+          <select id="sortId">
+            <option value="Most liked">Most liked</option>
+            <option value="Lowest Price">Lowest Price</option>
+            <option value="Highest Rating">Highest Rating</option>
           </select>
         </div>
-        <span class="results-count">0 Results Found</span>
+        <button class="search-button" id="search-button">
+          <img src="../assests/icons/search1.svg" width="20"/>
+        </button>
       </div>
-      <div id="Explore-container">
+      <div id="Explore-container" class="Explore-container">
 
       </div>
       
@@ -74,6 +84,7 @@
 <script src="../scripts/navbar.js"></script>
 <script src="../scripts/status.js"></script>
 <script src="../scripts/footer.js"></script>
-<script type="module" src="../scripts/main.js"></script>
+<script type="module" src="../scripts/main.js" ></script>
+<script type="module" src="../scripts/search.js"></script>
 </body>
 </html>

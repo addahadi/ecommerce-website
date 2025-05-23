@@ -56,3 +56,23 @@ export function showToast(msg , toast) {
 }
 
 
+export function mysqlDatetimeToNormal(mysqlDatetime) {
+  const date = new Date(mysqlDatetime);
+
+  if (isNaN(date.getTime())) {
+    return "Invalid datetime format!";
+  }
+
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false, 
+  };
+
+  return date.toLocaleString("en-US", options);
+}
+
+

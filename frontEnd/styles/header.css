@@ -6,71 +6,44 @@ body {
   padding: 0px;
 }
 
-header {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+.navbar_container {
+    border-bottom: 1px solid #d5d5d5;
+}
+.website-info{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: black;
 
 }
-
-.img-section {
-    width: 100%;
-    height: 600px;
-    margin-top: 40px;
-    margin-left: auto;
-    margin-right: auto;
-    background: url('../assests/imgs/ps5.jpg') no-repeat center center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+.website-info ul{
+  list-style: none;
+  display: flex;
+  gap: 10px;
 }
-.img-section div h1{
 
-    font-size: 25px;
-    color:#E3F2FD;
-}
-.img-section div h5{
-
-    font-size: 15px;
-    color:#79A9FF;
-}
-.img-section div p{
-    color: #E3F2FD;
-    line-height: 23px;
-
-}
-.img-section div button{
-padding: 10px;
-padding-left: 20px;
-padding-right: 20px;
-border: none;
-background-color:#64B5F6 ;
-color: white ;
-
+.info-list li span{
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
 }
 
 
-
-.img-section div{
-    background:  #0D47A1;
-    width: 400px;
-    padding: 20px;
-    margin-right: 40px;
-    border-radius: 20px;
-
-}
 
 .navbar {
     padding-bottom: 6px;
 
     padding-left: 5px;
     padding-right: 5px;
-
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #d5d5d5;
     
 }
 

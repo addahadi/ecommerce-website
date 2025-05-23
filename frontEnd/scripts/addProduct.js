@@ -1,4 +1,4 @@
-
+import { showToast } from "../utils/util.js";
 
 document.addEventListener("DOMContentLoaded" , () => {
   const modal = document.getElementById("addProjectModal");
@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded" , () => {
   closeBtn.onclick = () => {
     modal.style.display = "none";
     document.body.classList.remove("modal-open");
+    
   };
 
   window.onclick = (event) => {
@@ -48,8 +49,7 @@ document.getElementById("addProjectForm").addEventListener("submit", async (e) =
             formData.append("images", imges.files[i]);
           }
         }
-      console.log("FormData built, about to fetch...");
-
+      
     
         formData.append("title", title);
         formData.append("desc", desc);
@@ -59,17 +59,19 @@ document.getElementById("addProjectForm").addEventListener("submit", async (e) =
         formData.append("region", region);
         formData.append("facebook" , facebook)
 
-        
+  
         try {
           const response = await fetch("http://localhost:8090/products/add", {
             method: "POST",
-
             credentials: "include",
             body: formData,
           });
     
           if (response.ok) {
               modal.style.display = "none";
+              document.body.classList.remove("modal-open");
+              const toast = document.getElementById("toast")
+              setTimeout(showToast("✅ Product added successfully!" , toast),1000)
           }
 
         } catch (err) {

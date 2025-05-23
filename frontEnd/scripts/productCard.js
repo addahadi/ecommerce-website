@@ -1,28 +1,47 @@
 
 
+export default function productCard(product) {
+  const card = document.createElement("div");
+  card.className = "products";
 
-export default function productCard(product){
-    
-    const card = document.createElement("div")
-    card.className = "products"
-    
-    card.innerHTML = `
-        <div class="productsImgContainer" >
-
-            <img src="../server/uploads/${
-              product.img_url
-            }" alt="pc" width="200px"  class="productImg">
-
+  card.innerHTML = `
+      <div class="productsImgContainer">
+          <img src="../server/uploads/${product.img_url}" alt="pc" width="200px" class="productImg">
+      </div>
+      <div class="text-container">
+        <span class="productTitle">${product.title}</span>
+        <div class="under-text">
+          <div class="productPrice">${product.price}$</div>
+          <div class="rating">
+                <span class="rated" data-value="1">&#9733;</span>
+                <span class="rated" data-value="2">&#9733;</span>
+                <span class="rated" data-value="3">&#9733;</span>
+                <span class="rated" data-value="4">&#9733;</span>
+                <span class="rated" data-value="5">&#9733;</span>
+                <span class="review-count"></span>
+          </div>
         </div>
-        <strong  class="productTitle">${product.title}</strong>
-        <p>
-            <span class="productPrice">${product.price}$</span>
-            <span class="stars" id="starRating"></span>
+      </div>
+    `;
 
-        </p>`;
-        card.onclick = () => {
-            window.location.href = `/product/${product.productId}`;
-        }
-    return card;
+  showRating(card, product);
+
+  card.onclick = () => {
+    window.location.href = `/product/${product.productId}`;
+  };
+
+  return card;
 }
 
+function showRating(card, result) {
+  const stars = card.querySelectorAll(".rated");
+  stars.forEach((star) => {
+    if (parseInt(star.dataset.value) <= result.rate) {
+      star.classList.add("hover");
+    }
+  });
+
+  const reviewSpan = card.querySelector(".review-count");
+  reviewSpan.textContent = `( ${result.total} Reviews )`;
+}
+  

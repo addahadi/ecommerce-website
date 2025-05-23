@@ -9,25 +9,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../styles/rate.css">
     <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/toast.css" >
+    <link rel="stylesheet" href="../styles/productCard.css">
     <link rel="stylesheet" href="../styles/add.css" >
 </head>
 
 <body>
-
-    <header>
         <div  id="navbar">
         </div>
-        <div class="img-section">
-            <div>
-                <h5>Upgrade Your Tech</h5>
-                <h1>Discover the<br> <span> Future of Tech & Gaming</span></h1>
-                <p>From the latest gaming consoles to high-performance computers and smartphones, explore top-tier devices designed to power your digital world. Elevate your experience today!</p>
-                <button >Shop now</button>
-            </div>
-        </div>
-
-    </header>
     <main>
         <section class="category-section">
         <div class="category-label">
@@ -36,30 +27,41 @@
         </div>
         <div class="category-header">
             <h2>Browse By <span>Category</span></h2>
+            <button class="scroll-btn left" onclick="scrollL()"><img src="../assests/icons/left.svg" width="40"/></button>
+            <button class="scroll-btn right" onclick="scrollRight()"><img src="../assests/icons/right.svg" width="40"></button>
         </div>
-        <div class="category-container">
-            
-            <a href="/search" class="category-card">
-                <img src="../assests/icons/phones.svg" width="30px"/>
-                <p>Phone</p>
-            </a>
-            <a href="/search" class="category-card">
-                <img  src="../assests/icons/consoles.svg" width="30px"/>
-                <p>Consols</p>
-            </a>
-            <a href="/search" class="category-card active">
-                <img src="../assests/icons/computer.svg" width="30px"/>
-                <p>Computers</p>
-            </a>
-            <a href="/search" class="category-card">
-                <img src="../assests/icons/headphones.svg" width="30px"/>
-                <p>Headphones</p>
-            </a>
-            <a href="/search" class="category-card">
-                <img src="../assests/icons/keyboard.svg" width="30px"/>
-                <p>Accessories</p>
-            </a>
-            
+        <div style="padding-left: 80px; padding-right: 80px;">
+            <div class="category-container" id="category-container">  
+                <a href="/search" class="category-card">
+                    <img src="../assests/icons/phones.svg" width="30px"/>
+                    <p>Phone</p>
+                </a>
+                <a href="/search" class="category-card">
+                    <img  src="../assests/icons/consoles.svg" width="30px"/>
+                    <p>Consols</p>
+                </a>
+                <a href="/search" class="category-card active">
+                    <img src="../assests/icons/computer.svg" width="30px"/>
+                    <p>Computers</p>
+                </a>
+                <a href="/search" class="category-card">
+                    <img src="../assests/icons/headphones.svg" width="30px"/>
+                    <p>Headphones</p>
+                </a>
+                <a href="/search" class="category-card">
+                    <img src="../assests/icons/keyboard.svg" width="30px"/>
+                    <p>Accessories</p>
+                </a>
+                <a href="/search" class="category-card">
+                    <img src="../assests/icons/camera.svg" width="30px"/>
+                    <p>Camera</p>
+                </a>
+                <a href="/search" class="category-card">
+                    <img src="../assests/icons/tv.svg" width="30px"/>
+                    <p>Tvs</p>
+                </a>
+                
+            </div>
         </div>
     </section>
     <section class="Explore-section">
@@ -76,6 +78,31 @@
         </div>
     
 
+    </section>
+    <section class="Explore-section">
+        <div class="Explore-label">
+                <h4>our phones</h4>
+
+        </div>
+
+        <div class="Explore-title">
+                <h1>Explore our Top phones </h1>
+        </div>
+        <div class="Explore-container" id="Topphone-container">
+
+        </div>
+    </section>
+    <section class="Explore-section">
+        <div class="Explore-label">
+                <h4>our computers</h4>
+
+        </div>
+
+        <div class="Explore-title">
+                <h1>Explore our Cheapest Computers </h1>
+        </div>
+        <div class="Explore-container" id="lowercomputer-container">
+        </div>
     </section>
     </main>
 
@@ -117,21 +144,16 @@
             <input type="text" id="facebook" name="facebook" placeholder="facebook link" />
             <button type="submit">Add Project</button>
         </form>
-  </div>
+    </div>
 </div>
-
-
-
-
-
-
+    <div id="toast" hidden></div>
 
     <div id="footer"></div>
 </body>
 
 <script src="../scripts/navbar.js"></script>
 <script type="module" src="../scripts/main.js"></script>
-<script src="../scripts/addProduct.js"></script>
+<script type="module" src="../scripts/addProduct.js"></script>
 <script src="../scripts/footer.js"></script>
 <script src="../scripts/status.js"></script>
 

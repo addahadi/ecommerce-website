@@ -1,3 +1,4 @@
+import { mysqlDatetimeToNormal } from "../utils/util.js"
 import { showToast } from "/utils/util.js"
 
 
@@ -72,11 +73,8 @@ function showProductInfo(data){
     document.getElementById("title").textContent = data.title
     document.getElementById("description").textContent = data.descr; 
     document.getElementById("price").textContent = data.price + "$";
-    document.getElementById("date").textContent = data.created_at;
-    document.getElementById("stock").textContent = data.stock;
+    document.getElementById("date").textContent = mysqlDatetimeToNormal(data.created_at);
     document.getElementById("category").textContent = data.category;
-    document.getElementById("facebook").href = data.facebook;
-    document.getElementById("phone").textContent = data.phone_number
     document.getElementById("region").textContent = data.region
 
     const thumbnail = document.getElementById("thumbnails");

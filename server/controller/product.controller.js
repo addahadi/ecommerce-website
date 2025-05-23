@@ -31,41 +31,39 @@ const addNewProduct  = (req , res) => {
 
 function getProducts(req,res){
 
-    let query = 'SELECT productId , title , rating , price FROM product'
+    let query = `(SELECT  p.productId , p.category , p.title , p.created_at , p.price , CAST(AVG(r.rating) AS UNSIGNED) AS rate ,COUNT(r.id) AS total
+    ,(
+      SELECT img_url 
+      FROM product_img i 
+      WHERE p.productId = i.productId 
+      LIMIT 1
+    ) AS img_url
+    FROM product p, product_rating r
+    WHERE p.productId = r.productId
+    GROUP BY p.productId, p.category, p.title, p.created_at, p.price)
+    
+    UNION 
+    (
+      SELECT p.productId , p.category , p.title , p.created_at , p.price , 0 as rate  , 0 as total 
+    ,(
+      SELECT img_url 
+      FROM product_img i 
+      WHERE p.productId = i.productId 
+      LIMIT 1
+      ) AS img_url
+      FROM product p
+      WHERE p.productId NOT IN (SELECT productId FROM product_rating)
+    );`;
 
-    db.query(query , function(err , products){
+    db.query(query , function(err , result){
         if(err){
-            return res.json({message:'there is an error'})
-
+            return res.json({message:'there is an error' , err})
         }
-        
-
-        let query2 = 'SELECT img_url , imgId FROM product_img WHERE productId = ?'
-        let result  = {
-            success : true,
-            data : [] 
+        const Res = {
+          status : true ,
+          data : result
         }
-        const promise = products.map((product) => {
-            const producId = product.productId
-            return new Promise((reslove , reject) => {
-                db.query(query2, [producId], function (err, image) {
-                  if (err) {
-                    return reject(err)
-                  }
-                  reslove({ ...product, ...image[0] })
-                });
-            })
-        })
-        Promise.all(promise).then((result) => {
-            
-            res.json({
-               success: true,
-               data: result,
-             });
-        }).catch((err) => {
-            res.json({message : "no result"})
-        })
-
+        res.json(Res)
     })
 }
 
@@ -137,5 +135,178 @@ function getProduct(req , res) {
 
 
 
-module.exports = { addNewProduct, getProducts, getProduct, rateProduct , getRating};
+
+function getLowerComputers(req , res){
+  const query = `
+  SELECT p.productId,p.price,p.title,CAST(AVG(r.rating) AS UNSIGNED) AS rate ,COUNT(r.id) AS total,
+    (
+        SELECT img_url
+        FROM product_img pi
+        WHERE pi.productId = p.productId
+        LIMIT 1
+    ) AS img_url
+  FROM product p , product_rating r
+  WHERE p.productId = r.productId AND p.category = "computer"
+  GROUP BY 
+      p.productId, p.price, p.title
+  ORDER BY 
+      price DESC
+  LIMIT 5;
+  `;
+
+
+  db.query(query , (err , result) => {
+    if(err){
+      return res.json(err)
+    }
+    const Res = {
+      status : true , 
+      data : result
+    }
+    res.json(Res);
+  })
+}
+
+function GetTopPhone(req , res){
+  const query = `
+  SELECT p.productId,p.price,p.title,CAST(AVG(r.rating) AS UNSIGNED) AS rate ,COUNT(r.id) AS total,
+    (
+        SELECT img_url
+        FROM product_img pi
+        WHERE pi.productId = p.productId
+        LIMIT 1
+    ) AS img_url
+  FROM product p , product_rating r
+  WHERE p.productId = r.productId AND p.category = "phone"
+  GROUP BY 
+      p.productId, p.price, p.title
+  ORDER BY 
+      rate DESC,
+      total DESC
+  LIMIT 5;
+  `;
+  db.query(query,(err , result) => {
+    if(err){
+      return res.json(err);
+    }
+    const Res = {
+      status : true,
+      data : result
+    }
+    res.json(Res);
+  })
+}
+
+
+function filterProduct(req , res){
+    const {category , price , sort , star , region} = req.query;
+    const {minPrice , maxPrice} = handlePrice(price);
+    let query = `SELECT p.title, p.category, p.created_at, p.price, p.productId, MIN(i.img_url) AS img_url,CAST(AVG(r.rating) AS UNSIGNED) AS rate
+    FROM 
+    product p, 
+    product_img i, (SELECT productId, rating FROM product_rating ) r WHERE p.productId = i.productId AND p.productId = r.productId
+`;    
+
+
+    const values = [];
+
+   
+    if (category && category.length > 0) {
+      query += " AND p.category = ?";
+      values.push(category);
+    }
+
+    if (price && price.length > 0) {
+      query += " AND p.price BETWEEN ? AND ?";
+      values.push(minPrice, maxPrice);
+    }
+
+    if (region && region.length > 0) {
+      const regionList = region.split(",");
+      const placeholders = regionList.map(() => "?").join(",");
+      query += ` AND p.region IN (${placeholders})`;
+      values.push(...regionList);
+    }
+
+    query +=
+      " GROUP BY p.productId, p.title, p.category, p.created_at, p.price";
+    if(star && star.length > 0){
+        const regionList = star.split(",").map((st) => { return parseInt(st)})
+        const placeholders = regionList.map(() => "?").join(",")
+        query += ` HAVING rate IN (${placeholders})`
+        values.push(...regionList)
+    }
+
+    if (sort && sort.length > 0) {
+      switch (sort) {
+        case "Most liked":
+          query += " ORDER BY rate DESC";
+          break;
+        case "Lowest Price":
+          query += " ORDER BY p.price ASC";
+          break;
+        case "Highest Rating":
+          query += " ORDER BY rate DESC";
+          break;
+      }
+    }
+    db.query(query , values , (err , result) => {
+        if(err){
+            console.log(err);
+            return res.json({message : "you did somthing wrong"})
+        }
+        const Res = {
+          status : true,
+          data : result
+        }
+        res.status(200).json(Res)
+    })
+
+}
+
+
+function handlePrice(price){
+    let minPrice = 0;
+    let maxPrice = Infinity;
+    switch (price) {
+      case "under20":
+        minPrice = 0;
+        maxPrice = 20;
+        break;
+
+      case "25to100":
+        minPrice = 25;
+        maxPrice = 100;
+        break;
+
+      case "100to300":
+        minPrice = 100;
+        maxPrice = 300;
+        break;
+
+      case "300to500":
+        minPrice = 300;
+        maxPrice = 500;
+        break;
+
+      case "over500":
+        minPrice = 500;
+        maxPrice = 10000;
+        break;
+    }
+    return {maxPrice , minPrice}
+}
+
+
+module.exports = {
+  addNewProduct,
+  getProducts,
+  getProduct,
+  GetTopPhone,
+  rateProduct,
+  getRating,
+  filterProduct,
+  GetTopPhone,
+  getLowerComputers,
+};
 
