@@ -97,3 +97,131 @@ main {
     height: fit-content;
     color: #0D47A1;
 }
+
+
+
+.container { max-width: 1200px; margin: auto; padding: 20px; }
+
+.newsletter {
+    background: #f9f9f9;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+.newsletter h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #222;
+}
+.newsletter p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+.newsletter input[type="email"] {
+    padding: 12px;
+    width: 280px;
+    max-width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+.newsletter button {
+    padding: 12px 24px;
+    margin-left: 10px;
+    border: none;
+    background: #0056c1;
+    color: white;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: fit-content;
+}
+.newsletter button:hover {
+    background: #0041a3;
+}
+
+
+
+.become-seller {
+    background: #fffbe6;
+    border: 1px solid #ffe58f;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    margin-top: 100px;
+}
+.become-seller h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #222;
+}
+.become-seller p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+.become-seller .cta-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #ff6f00;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+.become-seller .cta-button:hover {
+    background: #e65c00;
+}
+
+
+
+
+.hero-section {
+    background: url('https://via.placeholder.com/1400x400?text=Your+Marketplace+Banner') center/cover no-repeat;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    margin-bottom: 40px;
+}
+.hero-content {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px 40px;
+    border-radius: 10px;
+}
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+.hero-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #0056c1;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+.hero-button:hover {
+    background: #0041a3;
+}

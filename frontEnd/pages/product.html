@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="/styles/yyy.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="/styles/toast.css">
+    <link rel="stylesheet" href="/styles/productCard.css">
+    <link rel="stylesheet" href="/styles/rate.css">
     <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,11 +32,21 @@
                     <span class="rated" data-value="4">&#9733;</span>
                     <span class="rated" data-value="5">&#9733;</span>
                     <span id="review"></span> | <span class="stock">In Stock</span>
-                
+                    
                 </div>
                 <p class="price" id="price">$192.00</p>
-                <p class="description" id="description">
-                </p>
+                <table class="user-info">
+                    <tr class="row">
+                        <td>Category</td>
+                        <td id="category"></td>
+    
+                        <td>Date</td>
+                        <td id="date"></td>
+                        
+                        <td style="font-weight: bold;">Region</td>
+                        <td id="region"></td>
+                    </tr>
+                </table>
                 <div class="purchase">
                     <button class="buy-now" id="addToWish">Wish List</button>
                     <button class="rate" id="rate">
@@ -49,22 +61,51 @@
                     </div>
                 </div>
             </div>
-            <table class="user-info">
-                <tr class="row">
-                
-                    <td>Category</td>
-                    <td id="category"></td>
-
-                    <td>Date</td>
-                    <td id="date"></td>
-                    
-                    <td style="font-weight: bold;">Region</td>
-                    <td id="region"></td>
-                
-                </tr>
-            </table>
         </div>        
     </div>
+    
+    <section class="desc-container">
+        <div style="display: flex; align-items: center;gap: 4px;">
+            <img src="../assests/icons/description.svg" width="25px">
+            <span style="font-size: large;">Description</span>
+        </div>
+        <p class="description" id="description">
+        </p>
+    </section>
+
+    <section class="seller-container">
+        
+        <table class="seller-info">
+            <tr>
+                <td>
+                    <img src="../assests/icons/location.svg" width="30px"  />
+                </td>
+                <td id="regionn" class="info-text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="../assests/icons/phone.svg" width="30px"  />
+                </td>
+                <td id="phone" class="info-text"></td>
+            </tr>
+            <tr>
+                <td><img src="../assests/icons/message.svg" width="30px" /></td>
+                <td>
+                    <button class="msg-btn">
+                         <img src="../assests/icons/message.svg" width="14px" /> Message Ouedkniss
+                    </button>
+                </td>
+    
+            </tr>
+        </table>
+    </section>
+    <section class="reclist-section" style="max-width: 1200px;margin-left: auto;margin-right: auto;margin-top: 50px;">
+        <h2 style="margin-bottom: 40px;">Recommended List</h2>
+        <div class="Explore-container" id="reclist-container">
+
+        </div> 
+    </section>
     <div id="toast" hidden></div>
     <div id="footer"></div>
 </body>
@@ -73,5 +114,6 @@
 <script src="/scripts/footer.js"></script>
 <script type="module" src="/scripts/rate.js"></script>
 <script src="/utils/util.js"></script>
+<script src="/scripts/productCard.js"></script>
 
 </html>

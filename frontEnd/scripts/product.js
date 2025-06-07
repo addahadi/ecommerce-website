@@ -1,4 +1,5 @@
 import { mysqlDatetimeToNormal } from "../utils/util.js"
+import productCard from "./productCard.js"
 import { showToast } from "/utils/util.js"
 
 
@@ -10,6 +11,7 @@ document.addEventListener("DOMContentLoaded" , async () => {
     await Status()
     await getProduct()
     await fetchWishList();
+    await getRecommendedList();
     StartRating()
     toggleToWishList()
 })
@@ -75,7 +77,11 @@ function showProductInfo(data){
     document.getElementById("price").textContent = data.price + "$";
     document.getElementById("date").textContent = mysqlDatetimeToNormal(data.created_at);
     document.getElementById("category").textContent = data.category;
-    document.getElementById("region").textContent = data.region
+    document.getElementById("region").textContent = data.region;
+    document.getElementById("regionn").textContent = data.region
+    document.getElementById("phone").textContent = data.phone_number;
+
+
 
     const thumbnail = document.getElementById("thumbnails");
     thumbnail.innerHTML = ""; 
@@ -184,6 +190,33 @@ async function fetchWishList(){
   }
 }
 
+
+
+
+async function getRecommendedList()  {
+  const path = window.location.pathname;
+  const parts = path.split("/");
+  const productId = parts[parts.length - 1];
+  try {
+    const response = await fetch(
+      `http://localhost:8090/products/getrecommendedlist/${productId}`,
+      {
+        method: "GET",
+        credentials: "include",
+      }
+    );
+    if(response.ok){
+      const result = await response.json()
+      result.data.map((product) => {
+        document.getElementById("reclist-container").appendChild(productCard(product));
+      })
+      console.log(result)
+    }
+  }
+  catch(err){
+    console.log(err)
+  }
+}
 
 
 

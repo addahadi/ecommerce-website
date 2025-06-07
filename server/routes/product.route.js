@@ -1,7 +1,13 @@
 
 const express = require("express")
 const router = express.Router()
-const {addNewProduct , getProduct , getProducts , rateProduct , getRating , filterProduct , GetTopPhone, getLowerComputers} = require("../controller/product.controller")
+const {addNewProduct , getProduct , getProducts , rateProduct 
+    , getRating 
+    , filterProduct 
+    , GetTopPhone
+    , getLowerComputers 
+    , getRecommendedList
+} = require("../controller/product.controller")
 
 const upload = require("../middleware")
 
@@ -53,6 +59,12 @@ router.get('/getlowercomputer', (req ,res) => {
 router.get('/gettopphone',(req , res) => {
     GetTopPhone(req , res)
 })
+
+
+router.get("/getrecommendedlist/:productId", (req, res) => {
+    getRecommendedList(req , res)
+});
+
 
 
 router.post('/get' , (req , res) => {

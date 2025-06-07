@@ -298,6 +298,33 @@ function handlePrice(price){
 }
 
 
+function getRecommendedList(req , res) {
+  const {productId} = req.params
+
+
+  const query = `SELECT  p.productId,p.price,p.title , CAST(AVG(r.rating) AS UNSIGNED) AS rate ,COUNT(r.id) AS total,
+  (SELECT img_url FROM product_img WHERE productId = p.productId LIMIT 1) AS img_url
+  FROM product p , product_rating r
+  WHERE p.productId = r.productId AND  p.productId != ?
+    AND p.category = (SELECT category FROM product WHERE productId = ?)
+  GROUP BY p.productId, p.price, p.title
+  LIMIT 5;`;
+
+  db.query(query , [productId , productId , productId , productId , productId] , (err , result) => {
+    if(err){
+      return res.json({message : err})
+    }
+    const Result= {
+      status : true , 
+      data : result
+    }
+    res.json(Result)
+  })
+}
+
+
+
+
 module.exports = {
   addNewProduct,
   getProducts,
@@ -308,5 +335,6 @@ module.exports = {
   filterProduct,
   GetTopPhone,
   getLowerComputers,
+  getRecommendedList
 };
 

@@ -105,7 +105,6 @@ function setupRatingSystem() {
         };
 
         try {
-          console.log("hooooooooooooooooooooooooooo")
           const response = await fetch("http://localhost:8090/products/rate", {
             method: "POST",
             headers: {
