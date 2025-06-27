@@ -52,6 +52,9 @@
                     <button class="rate" id="rate">
                         <img src="/assests/icons/heart.svg" width="20" />
                     </button>
+                    <button class="msg-btn" id="msg-btn" style="  padding: 0.75rem 2rem;">
+                        <img src="../assests/icons/message.svg" width="14px" /> Message Seller
+                    </button>
                     <div class="stars" id="starRating" >
                         <span class="star" data-value="1">&#9733;</span>
                         <span class="star" data-value="2">&#9733;</span>
@@ -92,8 +95,8 @@
             <tr>
                 <td><img src="../assests/icons/message.svg" width="30px" /></td>
                 <td>
-                    <button class="msg-btn">
-                         <img src="../assests/icons/message.svg" width="14px" /> Message Ouedkniss
+                    <button class="msg-btn" id="msg-btn">
+                         <img src="../assests/icons/message.svg" width="14px" /> Message Seller
                     </button>
                 </td>
     
@@ -107,12 +110,36 @@
         </div> 
     </section>
     <div id="toast" hidden></div>
+    
     <div id="footer"></div>
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Send a Message to the Seller</h2>
+          <div class="modal-note">
+            Please note: Your message will be forwarded to the seller along with your WhatsApp number (if provided). The seller will contact you directly on WhatsApp or Facebook — you will not receive replies through this website.
+          </div>
+          <form id="messageForm">
+            <label for="name">Your Name <span style="color: red;">*</span></label>
+            <input type="text" id="name" name="name" placeholder="e.g. John Doe"  required/>
+      
+            <label for="whatsapp">WhatsApp Number <span style="color: red;">*</span></label>
+            <input type="text" id="whatsapp" name="whatsapp" required placeholder="e.g. +213 6XX XX XX XX" />
+      
+            <label for="message">Your Message <span style="color: red;">*</span></label>
+            <textarea id="message" name="message" required placeholder="I'm interested in your product..."></textarea>
+      
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+      
 </body>
 <script src="/scripts/navbar.js"></script>
 <script type="module" src="/scripts/product.js"></script>
 <script src="/scripts/footer.js"></script>
 <script type="module" src="/scripts/rate.js"></script>
+<script src="/scripts/status.js" ></script>
 <script src="/utils/util.js"></script>
 <script src="/scripts/productCard.js"></script>
 

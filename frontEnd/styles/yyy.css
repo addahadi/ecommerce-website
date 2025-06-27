@@ -179,8 +179,8 @@ body {
   font-size: 1.8rem;
   cursor: pointer;
   position: absolute;
-  top: -70px;
-  right: 0px;
+  top: -80px;
+  left: 55px;
   background: white;
   border: 1px solid var(--border-color);
   border-radius: var(--card-radius);
@@ -265,7 +265,7 @@ body {
 }
 
 .msg-btn {
-    background-color: #3399ff;
+    background-color: #0D47A1;
     color: white;
     padding: 8px 16px;
     border-radius: 50px;
@@ -279,7 +279,7 @@ body {
 }
 
 .msg-btn:hover {
-    background-color: #1d7de0;
+    background-color: #1d58b0;
 }
 
 
@@ -307,4 +307,121 @@ body {
 .Explore-container .product-card:hover {
   box-shadow: var(--shadow-hover);
   transform: translateY(-4px);
+}
+
+
+.modal {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 420px;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  font-family: 'Rubik', sans-serif;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #333;
+}
+
+.modal-content h2 {
+  margin: 0 0 5px;
+  font-size: 1.5rem;
+  color: #222;
+}
+
+.modal-sub {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.modal-content label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: #fafafa;
+  transition: border 0.2s;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+  border-color: #0D47A1;
+  outline: none;
+  background: #fff;
+}
+
+.modal-content textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.submit-btn {
+  margin-top: 18px;
+  padding: 12px;
+  width: 100%;
+  background: #0D47A1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #0D47A1;
+}
+
+.modal-note {
+  background-color: #f9fafb;
+  border-left: 4px solid #0D47A1;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  color: #444;
+  border-radius: 6px;
 }

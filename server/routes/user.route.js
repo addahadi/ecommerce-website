@@ -63,6 +63,11 @@ router.post("/updateuser" , (req , res) => {
     UpdateUserInfo(req , res)    
 })
 
+
+  
+
+
+
 router.post("/updatestore" , upload.single('image'), (req , res) => {
     if(!req.session.user.Id || !req.session.user.role == 'seller'){
         return res.json({error : "unAuth"})

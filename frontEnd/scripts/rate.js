@@ -1,42 +1,10 @@
 import { showToast } from "../utils/util.js";
 
-let result = null;
-
-document.addEventListener("DOMContentLoaded", async () => {
-  await checkAuthStatus();
+document.addEventListener("statusReady", async () => {
   await fetchRating();
   setupRatingSystem();
+  StartRating();
 });
-
-// 🔐 Check Auth
-async function checkAuthStatus() {
-  try {
-    const response = await fetch("http://localhost:8090/auth/status", {
-      method: "GET",
-      credentials: "include",
-    });
-
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-
-    result = await response.json();
-
-    if (result.loggedIn) {
-      document.getElementById("Login-button").style.display = "none";
-      document.getElementById("profile-button").style.display = "inline-block";
-      if (result.user.role === "seller") {
-        document.getElementById("add-product-button").style.display = "block";
-      }
-    } else {
-      document.getElementById("Login-button").style.display = "inline-block";
-      document.getElementById("profile-button").style.display = "none";
-      document.getElementById("rate").style.display = "none";
-    }
-  } catch (error) {
-    console.error("Error checking auth status:", error);
-  }
-}
 
 
 async function fetchRating() {
@@ -48,7 +16,6 @@ async function fetchRating() {
       productId
     }
     try {
-      console.log(productId)
       const response = await fetch("http://localhost:8090/products/getrating", {
         method: "POST",
         headers: {
@@ -69,35 +36,23 @@ async function fetchRating() {
 }
 
 
-function showRating(result){
-  const stars = document.querySelectorAll(".rated")
-  stars.forEach((star) => {
-    console.log(result.average)
-    if(star.dataset.value <= result.average){
-      star.classList.add("hover");
-    }
-  })
-  document.getElementById("review").textContent = "( " +  result.total + " Reviews" + " )"
-
-}
-
-
 
 function setupRatingSystem() {
   const stars = document.querySelectorAll(".star");
-  if (!stars || !result?.loggedIn) return;
+  console.log(window.resultData)
+  if (!stars || !(window.resultData?.loggedIn)) return;
 
   let selectedStar = 0;
-
+  console.log("wowowoowowooww")
   const path = window.location.pathname;
   const productId = path.split("/").pop();
-  const userId = result.user.Id;
-  console.log(userId);
+  const userId = window.resultData.user.Id;
   stars.forEach((star) => {
     star.addEventListener("click", async () => {
       selectedStar = star.dataset.value;
 
       if (selectedStar && userId) {
+        console.log("Selected star:", selectedStar);
         const requestBody = {
           rating: selectedStar,
           productId,
@@ -115,10 +70,10 @@ function setupRatingSystem() {
 
           if (response.ok) {
             const text = await response.text();
-            const toast = document.getElementById("toast")
-            console.log(text)
-            console.log(toast)
-            showToast("you rated the product ✔️" , toast);
+            const toast = document.getElementById("toast");
+            console.log(text);
+            console.log(toast);
+            showToast("you rated the product ✔️", toast);
           }
         } catch (err) {
           console.error("Rating error:", err);
@@ -127,3 +82,68 @@ function setupRatingSystem() {
     });
   });
 }
+
+
+function StartRating(){
+    const stars = document.querySelectorAll(".star");
+    const rateButton = document.getElementById("rate");
+    const rateContainer = document.getElementById("starRating");
+
+    let selectedStarValue = 0;
+    let t = 0;
+    rateButton.addEventListener("click", () => {
+      t++;
+      if (t % 2 != 0) {
+        rateContainer.style.display = "flex";
+      } else rateContainer.style.display = "none";
+    });
+
+    stars.forEach((star) => {
+      star.addEventListener("mouseover", () => {
+        highlightStars(star.dataset.value);
+      });
+      star.addEventListener("mouseout", () => {
+        deHighlightStar(star.dataset.value);
+      });
+      star.addEventListener("click", () => {
+        selectedStarValue = star.dataset.value;
+        SelectedStar();
+      });
+    });
+    function highlightStars(value) {
+      stars.forEach((star) => {
+        if (star.dataset.value <= value) {
+          star.classList.add("hover");
+        }
+      });
+    }
+
+    function deHighlightStar(value) {
+      stars.forEach((star) => {
+        if (star.dataset.value <= value) {
+          star.classList.remove("hover");
+        }
+      });
+    }
+    function SelectedStar() {
+      stars.forEach((star) => {
+        star.classList.remove("selected");
+        if (star.dataset.value <= selectedStarValue)
+          star.classList.add("selected");
+      });
+    }
+}
+
+
+function showRating(result){
+  const stars = document.querySelectorAll(".rated")
+  stars.forEach((star) => {
+    if(star.dataset.value <= result.average){
+      star.classList.add("hover");
+    }
+  })
+  document.getElementById("review").textContent = "( " +  result.total + " Reviews" + " )"
+
+}
+
+

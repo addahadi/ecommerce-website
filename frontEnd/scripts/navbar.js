@@ -1,9 +1,5 @@
-
-
-
 function createNavbar() {
-  
-    return `
+  return `
     <header class="navbar_container">
         <div class="website-info">
             <ul class="info-list">
@@ -31,6 +27,15 @@ function createNavbar() {
                     </div>
                 </li>
                 <li>
+                    <div style="position: relative; cursor: pointer; display:none" id="notification-button">
+                        <img src="/assests/icons/bell.svg" width="24" />
+                        <div id="notificationCount" 
+                            style="position: absolute; top: -5px; right: -5px; background: red; color: white; font-size: 12px; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center;">
+                            0
+                        </div>
+                    </div>
+                </li>
+                <li>
                     <a href="/register" id="Login-button">
                         Login/Sign-up
                     </a>
@@ -55,5 +60,5 @@ function createNavbar() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("navbar").innerHTML = createNavbar();
+    document.getElementById("navbar").innerHTML = createNavbar();
 });

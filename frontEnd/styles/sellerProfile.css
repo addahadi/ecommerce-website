@@ -1,0 +1,203 @@
+
+
+body {
+    font-family: Arial, sans-serif;
+    
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --profile-header-height: 200px;
+    --profile-header-bg-color: #fff;
+    --profile-details-h1-color : #242424
+}
+
+.profile-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+.profile-header {
+  background-color: var(--profile-header-bg-color);
+  border-radius: 30px;
+  border: 2px solid #e0e0e0;
+}
+
+.profile-header .img-banner {
+  width: 100%;
+  height: 300px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  background-image: url('../assests/imgs/imgbanner.jpg'); 
+  object-fit:contain;
+}
+
+
+.profile-info {
+    position: relative;
+    padding: 20px;
+
+}
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid black;
+    position: absolute;
+    top: -75px;
+    left: 20px;
+}
+.profile-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-details
+{
+    margin-left: 200px;
+    padding: 20px;
+}
+.profile-details h1 {
+    font-size: 45px;
+    color : var(--profile-details-h1-color);
+    margin-bottom: 10px;
+}
+.profile-details div {
+    font-size: 20px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.profile-details div img {
+    display: block;
+    width: 20px;
+}
+
+.profile-actions {
+    margin-top: 20px;
+}
+
+.profile-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.profile-actions button:hover {
+    background-color: #0056b3;
+}
+
+
+.profile-description {
+    margin-top: 20px;
+
+}
+
+.profile-description h2 {
+    font-size: 30px;
+    color : var(--profile-details-h1-color);
+    margin-bottom: 30px;
+    margin-left: 15px;
+}
+
+.profile-product-list {
+    background-color: var(--profile-header-bg-color);
+    border-radius: 30px;
+    border: 2px solid #e0e0e0;
+    padding: 15px;   
+}
+
+.profile-product-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 30px;
+}
+
+
+.profile-product-image {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+
+.profile-product-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 16px;
+  }
+  
+  .profile-product-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-product-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid #eee;
+  }
+  
+  .profile-product-card-details {
+    flex: 1;
+    display: flex;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    flex-direction: column;
+    gap: 6px;
+    justify-content: space-between;
+  }
+  
+  .profile-product-name {
+    font-size: 20px;
+    color: #333;
+    margin: 0 0 6px;
+  }
+  
+  .profile-product-description {
+    font-size: 15px;
+    color: #555;
+    margin: 0 0 10px;
+  }
+  
+  .profile-product-price {
+    font-size: 17px;
+    color: #198754; /* Bootstrap green */
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+  
+  .profile-product-date {
+    font-size: 13px;
+    color: #888;
+    margin-top: auto;
+  }
+  

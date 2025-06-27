@@ -5,6 +5,8 @@ const path = require("path");
 const authRoutes = require("./routes/user.route");
 const productRoutes = require("./routes/product.route");
 const wishRoutes = require("./routes/wishlist.route");
+const notiRoutes = require("./routes/notification.route")
+const sellerRoutes = require("./routes/seller.route")
 const session = require("express-session")
 const MySQLStore = require("express-mysql-session")(session);
 const app = express();
@@ -65,6 +67,10 @@ app.use("/auth", authRoutes);
 app.use("/products" , productRoutes);
 
 app.use("/wishlists" , wishRoutes);
+
+app.use("/seller", sellerRoutes);
+
+app.use("/notification", notiRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT} 🚀`);

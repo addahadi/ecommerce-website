@@ -8,31 +8,13 @@ let result
 let added
 
 document.addEventListener("DOMContentLoaded" , async () => {
-    await Status()
+
     await getProduct()
     await fetchWishList();
     await getRecommendedList();
-    StartRating()
     toggleToWishList()
 })
 
-
-async function Status (){
-    try {
-        const response = await fetch("http://localhost:8090/auth/status" , {
-            method : "GET",
-            credentials:'include'
-        });
-        result = await response.json()
-        if(result.loggedIn){
-            document.getElementById("profile-button").style.display = "block";
-            document.getElementById("Login-button").style.display = "none";
-        }
-    }
-    catch(err) {
-        console.log(err)
-    }
-}
 
 async function getProduct(){
     const path = window.location.pathname;
@@ -58,9 +40,9 @@ async function getProduct(){
           body: JSON.stringify(requestBody),
         });
         if(response.ok){
-            const result = await response.json()
-            console.log(result)
+            result = await response.json()
             const {data} = result
+            console.log(data)
             showProductInfo(data)
         }
     }
@@ -105,56 +87,7 @@ function showProductInfo(data){
 
 
 
-function StartRating(){
-    const stars = document.querySelectorAll(".star");
-    const rateButton = document.getElementById("rate");
-    const rateContainer = document.getElementById("starRating");
 
-    let selectedStarValue = 0;
-    let t = 0;
-    rateButton.addEventListener("click", () => {
-      t++;
-      if (t % 2 != 0) {
-        rateContainer.style.display = "flex";
-      } else rateContainer.style.display = "none";
-    });
-
-    stars.forEach((star) => {
-      star.addEventListener("mouseover", () => {
-        highlightStars(star.dataset.value);
-      });
-      star.addEventListener("mouseout", () => {
-        deHighlightStar(star.dataset.value);
-      });
-      star.addEventListener("click", () => {
-        console.log("hihhih");
-        selectedStarValue = star.dataset.value;
-        SelectedStar();
-      });
-    });
-    function highlightStars(value) {
-      stars.forEach((star) => {
-        if (star.dataset.value <= value) {
-          star.classList.add("hover");
-        }
-      });
-    }
-
-    function deHighlightStar(value) {
-      stars.forEach((star) => {
-        if (star.dataset.value <= value) {
-          star.classList.remove("hover");
-        }
-      });
-    }
-    function SelectedStar() {
-      stars.forEach((star) => {
-        star.classList.remove("selected");
-        if (star.dataset.value <= selectedStarValue)
-          star.classList.add("selected");
-      });
-    }
-}
 
 
 async function fetchWishList(){
@@ -266,4 +199,83 @@ function toggleToWishList(){
         }
       }
     );
+}
+
+
+
+
+
+
+const modal = document.getElementById("messageModal");
+const closeModal = document.querySelector(".modal .close");
+const messageBtn = document.getElementById("msg-btn");
+const messageForm = document.getElementById("messageForm");
+
+messageBtn.addEventListener("click", () => {
+  modal.style.display = "flex";
+});
+
+closeModal.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+
+window.addEventListener("click", (e) => {
+  if (e.target == modal) {
+    modal.style.display = "none";
+  }
+});
+
+
+messageForm.addEventListener("submit" , async (event) => {
+  event.preventDefault();
+  if(result){
+
+    const {userId} = result.data
+    sendMessage(userId)
+  }
+})
+
+
+
+
+async function sendMessage(seller_id){
+  console.log(seller_id)
+  const toast = document.getElementById("toast");
+  const Name = document.getElementById("name")
+  const Whatsapp = document.getElementById("whatsapp");
+  const message = document.getElementById("message");
+  const path = window.location.pathname;
+  const parts = path.split("/");
+  const productId = parts[parts.length - 1];
+  const body = 'Client ' + Name.value.trim() + " sent you a message . WhatsApp: " + Whatsapp.value.trim() + " message :" + message.value.trim()
+  
+  const requestBody =  {
+    body,
+    productId : productId ? productId : '',
+    title : "New message from client",
+    seller_id : seller_id
+  }
+
+  try {
+    const response = await fetch("http://localhost:8090/products/message", {
+      method : "POST", 
+      headers : {
+        "Content-Type": "application/json",
+
+      },
+      body : JSON.stringify(requestBody)
+    }) 
+    if(response.ok){
+      const result = await  response.json()
+      modal.style.display = "none";
+      setTimeout(() => {
+        showToast("message was sent ✔️" , toast);
+
+      },500)
+    }
+  }
+  catch(err){
+    console.log(err)
+  }
 }

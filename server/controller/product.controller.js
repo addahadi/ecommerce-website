@@ -325,6 +325,22 @@ function getRecommendedList(req , res) {
 
 
 
+
+function sendNotification(req , res){
+  const {body , productId , title , seller_id} = req.body
+  const query =
+    "INSERT INTO notification (title, body, seller_id, product_id) VALUES (?, ?, ?, ?)";
+  const values = [title, body, seller_id, productId || null];
+  db.query(query , values , (err) => {
+    if(err){
+      console.log(err)
+      return res.status(500).json({message : err})
+    }
+    res.status(200).json({message: "message was sent successfully"})
+  })
+
+}
+
 module.exports = {
   addNewProduct,
   getProducts,
@@ -335,6 +351,7 @@ module.exports = {
   filterProduct,
   GetTopPhone,
   getLowerComputers,
-  getRecommendedList
+  getRecommendedList,
+  sendNotification
 };
 

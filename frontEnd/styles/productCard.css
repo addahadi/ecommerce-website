@@ -65,18 +65,18 @@
   color: #1565c0;
 }
 
-.rating {
+.card-rating {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.rating .star {
+.card-rating .star {
   color: #fbc02d;
   font-size: 1.3rem;
 }
 
-.review-count {
+.card-review-count {
   font-size: 0.85rem;
   color: #666;
 }

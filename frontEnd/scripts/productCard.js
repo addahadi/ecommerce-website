@@ -12,13 +12,13 @@ export default function productCard(product) {
         <span class="productTitle">${product.title}</span>
         <div class="under-text">
           <div class="productPrice">${product.price}$</div>
-          <div class="rating">
+          <div class="card-rating">
                 <span class="rated" data-value="1">&#9733;</span>
                 <span class="rated" data-value="2">&#9733;</span>
                 <span class="rated" data-value="3">&#9733;</span>
                 <span class="rated" data-value="4">&#9733;</span>
                 <span class="rated" data-value="5">&#9733;</span>
-                <span class="review-count"></span>
+                <span class="card-review-count"></span>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@ function showRating(card, result) {
     }
   });
 
-  const reviewSpan = card.querySelector(".review-count");
+  const reviewSpan = card.querySelector(".card-review-count");
   reviewSpan.textContent = `( ${result.total} Reviews )`;
 }
   

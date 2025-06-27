@@ -20,6 +20,10 @@ router.get("/product/:productId", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontEnd/pages/product.html"));
 });
 
+router.get("/seller/:sellerId" , (req , res) => {
+  res.sendFile(path.join(__dirname, "../frontEnd/pages/SellerProfile.html"))
+})
+
 
 router.get("/wishlist" , (req , res) => {
   res.sendFile(path.join(__dirname, "../frontEnd/pages/wishlist.html"));

@@ -7,6 +7,7 @@ const {addNewProduct , getProduct , getProducts , rateProduct
     , GetTopPhone
     , getLowerComputers 
     , getRecommendedList
+    , sendNotification
 } = require("../controller/product.controller")
 
 const upload = require("../middleware")
@@ -58,6 +59,7 @@ router.get('/getlowercomputer', (req ,res) => {
 
 router.get('/gettopphone',(req , res) => {
     GetTopPhone(req , res)
+
 })
 
 
@@ -65,6 +67,10 @@ router.get("/getrecommendedlist/:productId", (req, res) => {
     getRecommendedList(req , res)
 });
 
+
+router.post("/message" , (req , res) => {
+    sendNotification(req , res)
+})
 
 
 router.post('/get' , (req , res) => {
