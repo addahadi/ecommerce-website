@@ -8,7 +8,6 @@ let userData = {}
 
 
 document.addEventListener("DOMContentLoaded" , async () => {
-  console.log("hihihihihihihihhihihhih")
   try {
     const response = await fetch("http://localhost:8090/auth/me" , {
       method:"GET",   
@@ -20,6 +19,7 @@ document.addEventListener("DOMContentLoaded" , async () => {
       if (result) {
         userData = result;
         populateUserInfo(result);
+        console.log(result)
         if(result.role == "seller"){
           document.getElementById("seller-section").style.display = "block"
         }
@@ -45,6 +45,10 @@ function populateUserInfo (data){
     "store-phone" : data.phone_number && data.phone_number,
     "store-logo" : data.store_logo && data.store_logo
   }
+
+  document.getElementById("total_products").textContent = data.total_products;
+  document.getElementById("total_rating").textContent = data.avg_rating;
+  document.getElementById("total_views").textContent = data.total_customers_rated;
   for(const Id in mapping){
     const element = document.getElementById(Id)
     console.log(mapping[Id])

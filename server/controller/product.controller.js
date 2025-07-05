@@ -105,9 +105,9 @@ function getRating(req, res) {
 function getProduct(req , res) {
     const { productId } = req.body;
     
-    const query = `SELECT product.*, phone_number
-                   FROM product, seller
-                   WHERE product.userId = seller.user_Id
+    const query = `SELECT product.*, s.phone_number , s.store_name , s.store_logo , s.user_Id
+                   FROM product, seller s
+                   WHERE product.userId = s.user_Id
                    AND product.productId = ?`
     db.query(query , [productId] , (err , productResult) => {
         if(err){

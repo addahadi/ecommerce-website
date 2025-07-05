@@ -1,146 +1,140 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/styles/header.css">
-    <link rel="stylesheet" href="/styles/footer.css" >
-    <link rel="stylesheet" href="/styles/yyy.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="/styles/toast.css">
-    <link rel="stylesheet" href="/styles/productCard.css">
-    <link rel="stylesheet" href="/styles/rate.css">
-    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Havic HV G-92 Gamepad</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Havic HV G-92 Gamepad</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
 </head>
 <body>
-    <header>
-        <div id="navbar"></div>
-    </header>
-    <div class="container">
-        <div class="gallery">
-            <img  class="main-image" id="mainImg" >
-            <div class="thumbnails" id="thumbnails">
-            </div>
-        </div>
-        <div class="info">
-            <div class="details">
-                <h1 id="title"></h1>
-                <div class="rating" id="rating">
-                    <span class="rated" data-value="1">&#9733;</span>
-                    <span class="rated" data-value="2">&#9733;</span>
-                    <span class="rated" data-value="3">&#9733;</span>
-                    <span class="rated" data-value="4">&#9733;</span>
-                    <span class="rated" data-value="5">&#9733;</span>
-                    <span id="review"></span> | <span class="stock">In Stock</span>
-                    
-                </div>
-                <p class="price" id="price">$192.00</p>
-                <table class="user-info">
-                    <tr class="row">
-                        <td>Category</td>
-                        <td id="category"></td>
-    
-                        <td>Date</td>
-                        <td id="date"></td>
-                        
-                        <td style="font-weight: bold;">Region</td>
-                        <td id="region"></td>
-                    </tr>
-                </table>
-                <div class="purchase">
-                    <button class="buy-now" id="addToWish">Wish List</button>
-                    <button class="rate" id="rate">
-                        <img src="/assests/icons/heart.svg" width="20" />
-                    </button>
-                    <button class="msg-btn" id="msg-btn" style="  padding: 0.75rem 2rem;">
-                        <img src="../assests/icons/message.svg" width="14px" /> Message Seller
-                    </button>
-                    <div class="stars" id="starRating" >
-                        <span class="star" data-value="1">&#9733;</span>
-                        <span class="star" data-value="2">&#9733;</span>
-                        <span class="star" data-value="3">&#9733;</span>
-                        <span class="star" data-value="4">&#9733;</span>
-                        <span class="star" data-value="5">&#9733;</span>
-                    </div>
-                </div>
-            </div>
-        </div>        
+  <header>
+    <div id="navbar"></div>
+  </header>
+
+  <div class="container">
+    <div class="gallery">
+      <img class="main-image" id="mainImg" />
+      <div class="thumbnails" id="thumbnails"></div>
     </div>
-    
-    <section class="desc-container">
-        <div style="display: flex; align-items: center;gap: 4px;">
-            <img src="../assests/icons/description.svg" width="25px">
-            <span style="font-size: large;">Description</span>
+
+    <div class="info">
+      <div class="details">
+        <h1 id="title"></h1>
+        <div class="rating" id="rating">
+          <span class="rated" data-value="1">&#9733;</span>
+          <span class="rated" data-value="2">&#9733;</span>
+          <span class="rated" data-value="3">&#9733;</span>
+          <span class="rated" data-value="4">&#9733;</span>
+          <span class="rated" data-value="5">&#9733;</span>
+          <span id="review"></span> | <span class="stock">In Stock</span>
         </div>
-        <p class="description" id="description">
-        </p>
-    </section>
-
-    <section class="seller-container">
-        
-        <table class="seller-info">
-            <tr>
-                <td>
-                    <img src="../assests/icons/location.svg" width="30px"  />
-                </td>
-                <td id="regionn" class="info-text">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="../assests/icons/phone.svg" width="30px"  />
-                </td>
-                <td id="phone" class="info-text"></td>
-            </tr>
-            <tr>
-                <td><img src="../assests/icons/message.svg" width="30px" /></td>
-                <td>
-                    <button class="msg-btn" id="msg-btn">
-                         <img src="../assests/icons/message.svg" width="14px" /> Message Seller
-                    </button>
-                </td>
-    
-            </tr>
+        <p class="price" id="price">$192.00</p>
+        <table class="user-info">
+          <tr class="row">
+            <td>Category</td>
+            <td id="category"></td>
+            <td>Date</td>
+            <td id="date"></td>
+            <td style="font-weight: bold;">Region</td>
+            <td id="region"></td>
+          </tr>
         </table>
-    </section>
-    <section class="reclist-section" style="max-width: 1200px;margin-left: auto;margin-right: auto;margin-top: 50px;">
-        <h2 style="margin-bottom: 40px;">Recommended List</h2>
-        <div class="Explore-container" id="reclist-container">
-
-        </div> 
-    </section>
-    <div id="toast" hidden></div>
-    
-    <div id="footer"></div>
-    <div id="messageModal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h2>Send a Message to the Seller</h2>
-          <div class="modal-note">
-            Please note: Your message will be forwarded to the seller along with your WhatsApp number (if provided). The seller will contact you directly on WhatsApp or Facebook — you will not receive replies through this website.
+        <div class="purchase">
+          <button class="buy-now" id="addToWish">Wish List</button>
+          <button class="rate" id="rate">
+            <img src="/assests/icons/heart.svg" width="20" />
+          </button>
+          <button class="msg-btn" id="msg-btn" style="padding: 0.75rem 2rem;">
+            <img src="/assests/icons/message.svg" width="14px" /> Message Seller
+          </button>
+          <div class="stars" id="starRating">
+            <span class="star" data-value="1">&#9733;</span>
+            <span class="star" data-value="2">&#9733;</span>
+            <span class="star" data-value="3">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+            <span class="star" data-value="5">&#9733;</span>
           </div>
-          <form id="messageForm">
-            <label for="name">Your Name <span style="color: red;">*</span></label>
-            <input type="text" id="name" name="name" placeholder="e.g. John Doe"  required/>
-      
-            <label for="whatsapp">WhatsApp Number <span style="color: red;">*</span></label>
-            <input type="text" id="whatsapp" name="whatsapp" required placeholder="e.g. +213 6XX XX XX XX" />
-      
-            <label for="message">Your Message <span style="color: red;">*</span></label>
-            <textarea id="message" name="message" required placeholder="I'm interested in your product..."></textarea>
-      
-            <button type="submit" class="submit-btn">Send Message</button>
-          </form>
         </div>
       </div>
-      
-</body>
-<script src="/scripts/navbar.js"></script>
-<script type="module" src="/scripts/product.js"></script>
-<script src="/scripts/footer.js"></script>
-<script type="module" src="/scripts/rate.js"></script>
-<script src="/scripts/status.js" ></script>
-<script src="/utils/util.js"></script>
-<script src="/scripts/productCard.js"></script>
+    </div>
+  </div>
 
+  <section class="desc-container">
+    <div style="display: flex; align-items: center; gap: 4px;">
+      <img src="/assests/icons/description.svg" width="25px" />
+      <span style="font-size: large;">Description</span>
+    </div>
+    <p class="description" id="description"></p>
+  </section>
+
+  <section class="seller-container">
+    <table class="seller-info">
+      <tr>
+        <td><img src="" width="50px" id="img_logo" style="border-radius: 100%;"/></td>
+        <td >
+          <a id="logo" class="info-text" style="font-weight: bold;">
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td><img src="/assests/icons/location.svg" width="30px" /></td>
+        <td id="regionn" class="info-text"></td>
+      </tr>
+      <tr>
+        <td><img src="/assests/icons/phone.svg" width="30px" /></td>
+        <td id="phone" class="info-text"></td>
+      </tr>
+      <tr>
+        <td><img src="/assests/icons/message.svg" width="30px" /></td>
+        <td>
+          <button class="msg-btn" id="msg-btn">
+            <img src="/assests/icons/message.svg" width="14px" /> Message Seller
+          </button>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="reclist-section" style="max-width: 1200px; margin: 50px auto 0;">
+    <h2 style="margin-bottom: 40px;">Recommended List</h2>
+    <div class="Explore-container" id="reclist-container"></div>
+  </section>
+
+  <div id="toast" hidden></div>
+  <div id="footer"></div>
+
+  <div id="messageModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Send a Message to the Seller</h2>
+      <div class="modal-note">
+        Please note: Your message will be forwarded to the seller along with your WhatsApp number (if provided). The seller will contact you directly on WhatsApp or Facebook — you will not receive replies through this website.
+      </div>
+      <form id="messageForm">
+        <label for="name">Your Name <span style="color: red;">*</span></label>
+        <input type="text" id="name" name="name" placeholder="e.g. John Doe" required />
+
+        <label for="whatsapp">WhatsApp Number <span style="color: red;">*</span></label>
+        <input type="text" id="whatsapp" name="whatsapp" required placeholder="e.g. +213 6XX XX XX XX" />
+
+        <label for="message">Your Message <span style="color: red;">*</span></label>
+        <textarea id="message" name="message" required placeholder="I'm interested in your product..."></textarea>
+
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="../src/product.js"></script>
+</body>
 </html>

@@ -5,7 +5,7 @@ const router = express.Router()
 
 
 router.get("/main", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontEnd/pages/main.html"));
+  res.sendFile(path.join(__dirname, "../frontEnd/index.html"));
 });
 
 router.get("/register", (req, res) => {

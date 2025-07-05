@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 
 async function getSellerInfo() {
-    const path = window.location.pathname;
-    const sellerId = path.split('/').pop();
+    const params = new URLSearchParams(window.location.search);
+    const sellerId = params.get("id");
     try {
         const response = await fetch(`http://localhost:8090/seller/getinfo/${sellerId}` ,{
             method: 'GET',
@@ -28,8 +28,8 @@ async function getSellerInfo() {
 }
 
 async function getSellerProducts(){
-    const path = window.location.pathname;
-    const sellerId = path.split('/').pop();
+    const params = new URLSearchParams(window.location.search);
+    const sellerId = params.get("id");
     try {
         const response = await fetch(`http://localhost:8090/seller/getproducts/${sellerId}` ,{
             method: 'GET',

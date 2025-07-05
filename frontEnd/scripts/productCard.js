@@ -1,12 +1,11 @@
 
-
-export default function productCard(product) {
+function productCard(product) {
   const card = document.createElement("div");
   card.className = "products";
 
   card.innerHTML = `
       <div class="productsImgContainer">
-          <img src="../server/uploads/${product.img_url}" alt="pc" width="200px" class="productImg">
+          <img src="http://localhost:8090/uploads/${product.img_url}" alt="pc" width="200px" class="productImg">
       </div>
       <div class="text-container">
         <span class="productTitle">${product.title}</span>
@@ -27,7 +26,7 @@ export default function productCard(product) {
   showRating(card, product);
 
   card.onclick = () => {
-    window.location.href = `/product/${product.productId}`;
+    window.location.href = `/pages/product.html?id=${product.productId}`;
   };
 
   return card;
@@ -44,4 +43,6 @@ function showRating(card, result) {
   const reviewSpan = card.querySelector(".card-review-count");
   reviewSpan.textContent = `( ${result.total} Reviews )`;
 }
-  
+
+
+window.productCard = productCard

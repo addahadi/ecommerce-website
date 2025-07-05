@@ -2,14 +2,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
 }
 
 body {
-    
     font-family: "Noto Sans", serif;
-    
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .container {
@@ -18,14 +15,13 @@ body {
     width: 100%;
     background: white;
     border-radius: 10px;
-    height: 700px;
-   
+    min-height: 700px;
 }
-
 
 .form-section {
     width: 40%;
     padding: 115px;
+    min-width: 300px;
 }
 
 .form {
@@ -41,17 +37,15 @@ body {
 }
 
 .form .title span {
-    color : #0D47A1;
-    margin-right :8px;
+    color: #0D47A1;
+    margin-right: 8px;
 }
-
 
 .form label {
     color: #242424;
     font-weight: 600;
     font-size: 14px;
 }
-
 
 .form input {
     width: 100%;
@@ -69,9 +63,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 15px;
-
 }
-
 
 .btn {
     width: 100%;
@@ -85,7 +77,6 @@ body {
     margin-top: 15px;
 }
 
-
 .image-section {
     flex: 1;
     padding: 20px;
@@ -94,23 +85,20 @@ body {
     background-color: #E0F7FA;
 }
 
-
 .image-section img {
     width: 100%;
     height: 100%;
-
+    object-fit: cover;
 }
+
 .name {
     display: flex;
     gap: 12px;
 }
 
-
-
 .seller-section {
     display: none;
 }
-
 
 .active {
     display: block;
@@ -120,14 +108,84 @@ body {
     display: none;
 }
 
-
 .switch {
-
     margin-top: 20px;
     cursor: pointer;
     color: #0D47A1;
 }
 
-.switch:hover{
+.switch:hover {
     text-decoration: underline;
+}
+
+/* Tablet styles (768px and below) */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .form-section {
+        width: 100%;
+        padding: 40px 30px;
+    }
+    
+    .image-section {
+        padding: 20px;
+        min-height: 300px;
+    }
+    
+    .form .title {
+        font-size: 22px;
+        text-align: center;
+    }
+    
+    .name {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+/* Mobile styles (480px and below) */
+@media (max-width: 480px) {
+    .container {
+        border-radius: 0;
+        margin: 0;
+    }
+    
+    .form-section {
+        padding: 20px 15px;
+    }
+    
+    .form .title {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .form input,
+    .form select {
+        padding: 12px;
+        font-size: 16px; 
+    }
+    
+    .btn {
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    .image-section {
+        min-height: 200px;
+        padding: 15px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .form-section {
+        padding: 120px 80px;
+    }
 }

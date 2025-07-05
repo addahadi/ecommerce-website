@@ -1,4 +1,3 @@
-import {validateSignUpForm , validateLoginForm} from "../utils/util.js";
 
 const roleInput = document.getElementById("role");
 const emailInput = document.getElementById("email");
@@ -64,7 +63,7 @@ form.addEventListener('submit' , async (e) => {
         const password = passwordInput.value.trim();
         const role = roleInput.value.trim();
             
-        if(!validateSignUpForm(username , email , password , role)){
+        if(!window.validateSignUpForm(username , email , password , role)){
             return;
         }
         
@@ -112,7 +111,7 @@ form.addEventListener('submit' , async (e) => {
                 password
             }
             
-            if(!validateLoginForm(email , password)){
+            if(!window.validateLoginForm(email , password)){
                 return;
             }
 

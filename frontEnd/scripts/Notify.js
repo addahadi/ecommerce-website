@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "<p>No product info</p>";
     }
 
-    // Mark as read
     await fetch(
       `http://localhost:8090/notification/markasread/${notification.id}/read`,
       {

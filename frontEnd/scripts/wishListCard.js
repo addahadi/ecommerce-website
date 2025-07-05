@@ -1,14 +1,16 @@
-export default function wishListCard(Product){
-    const productRow = document.createElement("tr");
+function wishListCard(Product){
+    const productRow = document.createElement("div");
+    productRow.classList.add("product_container")
     productRow.innerHTML = `
 
-            <td class="product">
-                <img />
+            <div class="product">
                 <span class="name">${Product.title}</span>
-            </td>
-            <td class="price">${Product.price}</td>
-            <td class="stock">${Product.stock}</td>
-            <td class="actions">
+            </div>
+            <div style="display:flex; gap:10px;">
+                <div class="price">${Product.price}$</div>
+                <div class="stock">${Product.stock}</div>
+            </div>
+            <div class="actions">
                 <button class="add-cart" ><a href=${Product.facebook} style="text-decoration:none; color:white">Message</a></button>
                 <button class="remove">&times;</button>
             </td>
@@ -19,3 +21,6 @@ export default function wishListCard(Product){
     })
     return productRow
 }
+
+
+window.wishListCard = wishListCard

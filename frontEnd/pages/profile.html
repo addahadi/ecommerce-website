@@ -2,92 +2,227 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Client Profile</title>
-  <link rel="stylesheet" href="../styles/profile.css">
-  <link rel="stylesheet" href="../styles/header.css">
-  <link rel="stylesheet" href="../styles/footer.css">
-  <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Profile - Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
 <body>
   <div id="navbar"></div>
+  
   <section class="welcom_section">
-    <p>
-      <strong>Welcom!</strong><span id="welcom"></span>
-    </p>
+    <div class="welcome-content">
+      <p>
+        <strong>Welcome back!</strong><span id="welcom"></span>
+      </p>
+      <p class="welcome-subtitle">Manage your account and preferences</p>
+    </div>
     <button class="LogOut" id="LogOut">
-      LogOut
+      <i class="fas fa-sign-out-alt"></i>
+      Log Out
     </button>
   </section>
+
   <section class="profile-layout">
-    
     <aside class="sidebar">
-      <h3>Manage My Account</h3>
-      <ul>
-        <li class="active" data-target="personal-info-section">My Profile</li>
-        <li data-target="payment-section">My Payment Options</li>
-      </ul>
-      <h3>My Wishlist</h3>
-      <ul>
-        <li data-target="wishlist-section">Wishlist</li>
-      </ul>
-      <div id="seller-section" style="display: none;">
-        <h3>Manage My Store</h3>
+      <div class="sidebar-section">
+        <h3><i class="fas fa-user-cog"></i> Manage My Account</h3>
         <ul>
-          <li data-target="store-section">My store</li>
+          <li class="active" data-target="personal-info-section">
+            <i class="fas fa-user"></i> My Profile
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <h3><i class="fas fa-heart"></i> My Wishlist</h3>
+        <ul>
+          <li data-target="wishlist-section">
+            <i class="fas fa-bookmark"></i> Saved Items
+          </li>
+        </ul>
+      </div>
+
+      <div id="seller-section" class="sidebar-section" style="display: none;">
+        <h3><i class="fas fa-store"></i> Manage My Store</h3>
+        <ul>
+          <li data-target="store-section"  >
+            <i class="fas fa-shop"></i> Store Dashboard
+          </li>
+          <li data-target="products-section">
+            <i class="fas fa-box"></i> My Products
+          </li>
         </ul>
       </div>
     </aside>
 
-    
     <main class="main-content">
-        <section class="card" id="personal-info-section">
-          <h2>Personal Information</h2>
-          <div id="personal-info-view">
-            <p><strong>Name:</strong> <span id="name"></span></p>
-            <p><strong>Email:</strong> <span id="email"></span></p>
-            <p><strong>password:</strong> <span id="phone"></span></p>
-            <button onclick="showEditPersonalInfo('personal-info' , ['name' , 'email' , 'phone'])">Edit Info</button>
+      <section class="card" id="personal-info-section">
+        <h2><i class="fas fa-user-circle"></i> Personal Information</h2>
+        <div id="personal-info-view">
+          <div class="info-grid">
+            <div class="info-item">
+              <p><strong><i class="fas fa-user"></i> Name:</strong> <span id="name"></span></p>
+            </div>
+            <div class="info-item">
+              <p><strong><i class="fas fa-envelope"></i> Email:</strong> <span id="email"></span></p>
+            </div>
+            <div class="info-item">
+              <p><strong><i class="fas fa-lock"></i> Password:</strong> <span id="phone">••••••••</span></p>
+            </div>
           </div>
-          <div id="personal-info-edit" style="display: none;">
-            <label>Name: <input type="text" id="edit-name" /></label><br/>
-            <label>Email: <input type="email" id="edit-email" /></label><br/>
-            <label>password: <input type="text" id="edit-phone" /></label><br/>
-            <button onclick="savePersonalInfo('personal-info' ,['edit-name' , 'edit-email' , 'edit-phone'] , ['username' , 'email' , 'password']) , 'http://localhost:8090/auth/updateuser'">Save</button>
-            <button onclick="cancelEdit('personal-info')">Cancel</button>
+          <div class="action-buttons">
+            <button onclick="showEditPersonalInfo('personal-info', ['name', 'email', 'phone'])" class="btn-primary">
+              <i class="fas fa-edit"></i> Edit Information
+            </button>
           </div>
-        </section>
-        <section class="card" id="store-section" style="display: none;">
-          <h2>Store Information </h2>
-          <div id="personal-store-view">
-            <p><strong>Store-name:</strong> <span id="store-name"></span></p>
-            <p><strong>phone:</strong> <span id="store-phone"></span></p>
-            <div >
-              <div>
-                <strong>Store_logo:</strong> 
+        </div>
+        <div id="personal-info-edit" style="display: none;">
+          <div class="form-grid">
+            <div class="form-group">
+              <label><i class="fas fa-user"></i> Full Name</label>
+              <input type="text" id="edit-name" placeholder="Enter your full name" />
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-envelope"></i> Email Address</label>
+              <input type="email" id="edit-email" placeholder="Enter your email address" />
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-lock"></i> New Password</label>
+              <input type="password" id="edit-phone" placeholder="Enter new password" />
+            </div>
+          </div>
+          <div class="action-buttons">
+            <button onclick="savePersonalInfo('personal-info', ['edit-name', 'edit-email', 'edit-phone'], ['username', 'email', 'password'], 'http://localhost:8090/auth/updateuser')" class="btn-primary">
+              <i class="fas fa-save"></i> Save Changes
+            </button>
+            <button onclick="cancelEdit('personal-info')" class="btn-secondary">
+              <i class="fas fa-times"></i> Cancel
+            </button>
+          </div>
+        </div>
+      </section>
+
+     
+      <!-- Wishlist Section -->
+      <section class="card" id="wishlist-section" style="display: none;">
+        <h2><i class="fas fa-heart"></i> My Wishlist</h2>
+        <div class="wishlist-grid" >
+          
+          <div class="empty-state" id="empty-state">
+            <i class="fas fa-heart-broken"></i>
+            <p>Your wishlist is empty</p>
+            <button class="btn-primary">Browse Products</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Store Section -->
+      <section class="card" id="store-section" style="display: none;">
+        <h2><i class="fas fa-store"></i> Store Information</h2>
+        <div id="personal-store-view">
+          <div class="store-overview">
+            <div class="store-stats">
+              <div class="stat-card">
+                <i class="fas fa-box"></i>
+                <div>
+                  <h4 id="total_products">0</h4>
+                  <p>Products</p>
+                </div>
               </div>
-              <div class="store-logo-section">
-                <img id="store-logo" width="150"/>
+              <div class="stat-card">
+                <i class="fas fa-chart-line"></i>
+                <div>
+                  <h4 id="total_views">0</h4>
+                  <p>Interested People</p>
+                </div>
+              </div>
+              <div class="stat-card">
+                <i class="fas fa-star"></i>
+                <div>
+                  <h4 id="total_rating">0</h4>
+                  <p>Rating</p>
+                </div>
               </div>
             </div>
-            <button onclick="showEditPersonalInfo('personal-store' , ['store-name' , 'store-phone' , 'store-logo'])">Edit Info</button>
+            
+            <div class="store-details">
+              <div class="info-item" style="display: flex; gap: 10px; align-items: center;">
+                <p><strong><i class="fas fa-store"></i> Store Name:</strong> <span id="store-name"></span></p>
+                <p><strong><i class="fas fa-phone"></i> Phone:</strong> <span id="store-phone"></span></p>
+              </div>
+              <div class="store-logo-container">
+                <div class="logo-header">
+                  <strong><i class="fas fa-image"></i> Store Logo:</strong>
+                </div>
+                <div class="store-logo-section">
+                  <img id="store-logo" width="150" alt="Store Logo"/>
+                </div>
+              </div>
+            </div>
           </div>
-          <div id="personal-store-edit" style="display: none;">
-            <label>Store-name: <input type="text" id="edit-store-name" /></label><br/>
-            <label>phone: <input type="text" id="edit-store-phone" /></label><br/>
-            <label>Store-logo: <input type="file" accept="image/*" id="edit-store-logo"/></label><br/>
-            <button onclick="savePersonalInfo('personal-store',['edit-store-name' , 'edit-store-phone' , 'edit-store-logo'] , ['store_name' , 'phone_number' , 'store_logo'] , '//localhost:8090/auth/updatestore')">Save</button>
-            <button onclick="cancelEdit('personal-info')">Cancel</button>
+          <div class="action-buttons">
+            <button onclick="showEditPersonalInfo('personal-store', ['store-name', 'store-phone', 'store-logo'])" class="btn-primary">
+              <i class="fas fa-edit"></i> Edit Store Info
+            </button>
           </div>
-        </section>
+        </div>
+        
+        <div id="personal-store-edit" style="display: none;">
+          <div class="form-grid">
+            <div class="form-group">
+              <label><i class="fas fa-store"></i> Store Name</label>
+              <input type="text" id="edit-store-name" placeholder="Enter store name" />
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-phone"></i> Phone Number</label>
+              <input type="text" id="edit-store-phone" placeholder="Enter phone number" />
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-upload"></i> Store Logo</label>
+              <input type="file" accept="image/*" id="edit-store-logo"/>
+            </div>
+          </div>
+          <div class="action-buttons">
+            <button onclick="savePersonalInfo('personal-store', ['edit-store-name', 'edit-store-phone', 'edit-store-logo'], ['store_name', 'phone_number', 'store_logo'], 'http://localhost:8090/auth/updatestore')" class="btn-primary">
+              <i class="fas fa-save"></i> Save Changes
+            </button>
+            <button onclick="cancelEdit('personal-store')" class="btn-secondary">
+              <i class="fas fa-times"></i> Cancel
+            </button>
+          </div>
+        </div>
+      </section>
+      <section class="card" id="products-section" style="display: none;">
+        <h2><i class="fas fa-box"></i> My Products</h2>
+        <div class="products-header">
+          <button class="btn-primary">
+            <i class="fas fa-plus"></i> Add New Product
+          </button>
+        </div>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">
+              <i class="fas fa-image"></i>
+            </div>
+            <div class="product-info">
+              <h4>Sample Product</h4>
+              <p class="price">$29.99</p>
+              <div class="product-actions">
+                <button class="btn-small"><i class="fas fa-edit"></i></button>
+                <button class="btn-small danger"><i class="fas fa-trash"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
-
   </section>
-  <div id="footer"></div>
-  <script src="../scripts/main.js"></script>
-  <script src="../scripts/navbar.js"></script>
-  <script src="../scripts/footer.js" ></script>
-  <script type="module" src="../scripts/profile.js"></script>
-  <script src="../scripts/status.js"></script>
 
+  <div id="footer"></div>
+ 
 </body>
+
+  <script type="module" src="../src/profile.js"></script>
 </html>

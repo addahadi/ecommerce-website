@@ -1,4 +1,3 @@
-import productCard  from "../scripts/productCard.js";
 
 
 
@@ -15,7 +14,7 @@ document.addEventListener('DOMContentLoaded' , async () => {
       let result = await response.json()
       console.log(result)
       result.data.forEach(product => {
-        document.getElementById("Explore-container").appendChild(productCard(product));
+        document.getElementById("Explore-container").appendChild(window.productCard(product));
       });
     }
   }
@@ -35,7 +34,7 @@ document.addEventListener('DOMContentLoaded' , async () => {
       result.data.forEach((product) => {
         document
           .getElementById("Topphone-container")
-          .appendChild(productCard(product));
+          .appendChild(window.productCard(product));
       });
     }
   }
@@ -55,7 +54,7 @@ document.addEventListener('DOMContentLoaded' , async () => {
       result.data.forEach((product) => {
         document
           .getElementById("lowercomputer-container")
-          .appendChild(productCard(product));
+          .appendChild(window.productCard(product));
       });
     }
   } catch (err) {

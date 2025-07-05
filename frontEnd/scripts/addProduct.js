@@ -1,4 +1,3 @@
-import { showToast } from "../utils/util.js";
 
 document.addEventListener("DOMContentLoaded" , () => {
   const modal = document.getElementById("addProjectModal");
@@ -71,7 +70,7 @@ document.getElementById("addProjectForm").addEventListener("submit", async (e) =
               modal.style.display = "none";
               document.body.classList.remove("modal-open");
               const toast = document.getElementById("toast")
-              setTimeout(showToast("✅ Product added successfully!" , toast),1000)
+              setTimeout(window.showToast("✅ Product added successfully!" , toast),1000)
           }
 
         } catch (err) {

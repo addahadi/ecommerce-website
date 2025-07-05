@@ -11,6 +11,8 @@ body {
 
 .container {
   display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .sidebar {
@@ -18,6 +20,9 @@ body {
   background-color: #fff;
   padding: 20px;
   border-right: 1px solid #ddd;
+  height: fit-content;
+  position: sticky;
+  top: 20px;
 }
 
 .filter-section {
@@ -34,6 +39,7 @@ body {
   display: block;
   margin-bottom: 8px;
   font-size: 14px;
+  cursor: pointer;
 }
 
 input[type="radio"], input[type="checkbox"] {
@@ -43,6 +49,7 @@ input[type="radio"], input[type="checkbox"] {
 .main-content {
   flex-grow: 1;
   padding: 20px;
+  min-width: 0;
 }
 
 .top-bar {
@@ -51,10 +58,12 @@ input[type="radio"], input[type="checkbox"] {
   justify-content: space-between;
   flex-wrap: wrap;
   margin-bottom: 20px;
+  gap: 15px;
 }
 
 .top-bar input[type="text"] {
   width: 250px;
+  max-width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -91,11 +100,20 @@ input[type="radio"], input[type="checkbox"] {
   border: 1px solid #eee;
   position: relative;
   text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .product-card img {
   max-width: 100%;
+  height: 150px;
+  object-fit: cover;
   margin-bottom: 10px;
+  border-radius: 4px;
 }
 
 .product-card .badge {
@@ -119,11 +137,13 @@ input[type="radio"], input[type="checkbox"] {
 .product-card h4 {
   font-size: 16px;
   margin: 10px 0 4px;
+  line-height: 1.3;
 }
 
 .product-card p {
   font-size: 13px;
   color: #555;
+  margin-bottom: 8px;
 }
 
 .rating {
@@ -137,4 +157,228 @@ input[type="radio"], input[type="checkbox"] {
   font-size: 16px;
 }
 
+.sidebar-toggle {
+  display: none;
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
 
+/* Large tablets and small desktops */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  
+  .sidebar {
+    width: 220px;
+    padding: 15px;
+  }
+  
+  .main-content {
+    padding: 15px;
+  }
+  
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+  }
+  
+  .product-card img {
+    height: 130px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 0 15px;
+  }
+  
+  .sidebar {
+    width: 100%;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 15px;
+  }
+  
+  .sidebar-toggle {
+    display: block;
+  }
+  
+  .sidebar.hidden {
+    display: none;
+  }
+  
+  .main-content {
+    padding: 0 15px 15px;
+  }
+  
+  .top-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  
+  .top-bar input[type="text"] {
+    width: 100%;
+    order: 1;
+  }
+  
+  .filters-info {
+    order: 2;
+  }
+  
+  .sort-by {
+    order: 3;
+    align-self: flex-end;
+  }
+  
+  .results-count {
+    order: 4;
+  }
+  
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+  }
+  
+  .product-card {
+    padding: 12px;
+  }
+  
+  .product-card img {
+    height: 120px;
+  }
+  
+  .product-card h4 {
+    font-size: 14px;
+  }
+  
+  .product-card p {
+    font-size: 12px;
+  }
+  
+  .price {
+    font-size: 14px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 10px;
+  }
+  
+  .sidebar {
+    padding: 10px;
+  }
+  
+  .main-content {
+    padding: 0 10px 10px;
+  }
+  
+  .top-bar {
+    gap: 8px;
+  }
+  
+  .top-bar input[type="text"] {
+    padding: 10px;
+  }
+  
+  .filters-info .tag {
+    margin-left: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+  }
+  
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  
+  .product-card {
+    padding: 10px;
+  }
+  
+  .product-card img {
+    height: 100px;
+  }
+  
+  .product-card h4 {
+    font-size: 13px;
+    margin: 8px 0 4px;
+  }
+  
+  .product-card p {
+    font-size: 11px;
+  }
+  
+  .rating {
+    font-size: 12px;
+  }
+  
+  .price {
+    font-size: 13px;
+  }
+  
+  .filter-section {
+    margin-bottom: 20px;
+  }
+  
+  .filter-section h3 {
+    font-size: 13px;
+  }
+  
+  .filter-section label {
+    font-size: 13px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+  .product-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  
+  .product-card {
+    padding: 8px;
+  }
+  
+  .product-card img {
+    height: 80px;
+  }
+  
+  .product-card h4 {
+    font-size: 12px;
+  }
+  
+  .product-card p {
+    font-size: 10px;
+  }
+  
+  .price {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+  }
+  
+  .product-card img {
+    height: 170px;
+  }
+}

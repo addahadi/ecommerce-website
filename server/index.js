@@ -15,7 +15,6 @@ const multer = require("multer");
 
 
 app.use(express.json()); 
-
 app.use(express.static(path.join(__dirname, "../frontEnd")));
 app.use(
   "/server/uploads",
@@ -45,11 +44,13 @@ app.use(
 
 
 app.use(cors({
-  origin: "http://localhost:5500",
+  origin: "http://localhost:5173",
   credentials: true,
  
 }));
 
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 
 app.get("/", (req, res) => {

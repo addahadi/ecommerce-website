@@ -1,7 +1,6 @@
 const statusReadyEvent = new Event("statusReady");
 
 document.addEventListener("DOMContentLoaded", async function () {
-  console.log("hhihhihihih")
   try {
     const response = await fetch("http://localhost:8090/auth/status", {
       method: "GET",
@@ -14,10 +13,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const result = await response.json();
     window.resultData = result;
-    if (window.fetchNotifications) {
-      window.fetchNotifications();
-
-    }
+    
     document.dispatchEvent(statusReadyEvent);
 
     if (result.loggedIn) {
@@ -26,6 +22,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (result.user.role == "seller") {
         document.getElementById("notification-button").style.display = "block";
         document.getElementById("add-product-button").style.display = "block";
+        if (window.fetchNotifications) {
+          window.fetchNotifications();
+        }
       }
     } else {
       document.getElementById("Login-").style.display = "inline-block";

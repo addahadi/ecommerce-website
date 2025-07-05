@@ -1,4 +1,3 @@
-import { showToast } from "../utils/util.js";
 
 document.addEventListener("statusReady", async () => {
   await fetchRating();
@@ -73,7 +72,7 @@ function setupRatingSystem() {
             const toast = document.getElementById("toast");
             console.log(text);
             console.log(toast);
-            showToast("you rated the product ✔️", toast);
+            window.showToast("you rated the product ✔️", toast);
           }
         } catch (err) {
           console.error("Rating error:", err);

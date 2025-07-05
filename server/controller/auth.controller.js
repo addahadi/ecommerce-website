@@ -36,35 +36,60 @@ const Login = async (req, res) => {
   loginUser(req,res);
 }
 
-const GetUserInfo = async (req , res) => {
-  const query = ' SELECT username , email , pssword , role FROM user WHERE userId = ?'
-  db.query(query , [req.session.user.Id] , (err , result1) => {
-    if(err){
-      return res.status(200).json({error : err})
-    }
-    if(result1[0].role == "seller"){
-      const sellerId = req.session.user.Id;
-      
-      const query = 'SELECT store_name , store_logo , phone_number FROM seller WHERE user_id = ?'
-      db.query(query , [sellerId] , (err , result2) => {
-        if(err){
-          return res.status(200).json({ error: err });
-        }
-        const result = {
-          ...result1[0],
-          ...result2[0],
-        }
-        res.status(200).json(result)
+const GetUserInfo = async (req, res) => {
+  const userId = req.session.user.Id;
+  console.log(userId)
+  const userQuery =
+    "SELECT username, email, pssword, role FROM user WHERE userId = ?";
 
-      })
-    }else{
-      const result = {
-        ...result1[0]
-      }
-      res.status(200).json(result)
+  db.query(userQuery, [userId], (err, userResult) => {
+    if (err) {
+      return res.status(500).json({ error: err });
     }
-  })  
-}
+
+    if (!(userResult.length > 0 )) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const user = userResult[0];
+    console.log(user)
+    if (user.role == "seller") {
+      const sellerQuery = `
+        SELECT 
+          s.store_name, 
+          s.store_logo, 
+          s.phone_number,
+          COUNT(p.productId) as total_products,
+          COALESCE(AVG(r.rating), 0) as avg_rating,
+          COUNT(DISTINCT r.userId) as total_customers_rated
+
+        FROM seller s
+        LEFT JOIN product p ON s.user_id = p.userId
+        LEFT JOIN product_rating r ON p.productId = r.productId
+        WHERE s.user_id = ?
+        GROUP BY s.sellerId
+      `;
+
+      db.query(sellerQuery, [userId], (err, sellerResult) => {
+        if (err) {
+          return res.status(500).json({ error: err });
+        }
+
+        const result = {
+          ...user,
+          ...(sellerResult[0] || {}),
+          total_products: sellerResult[0]?.total_products || 0,
+          avg_rating: parseFloat(sellerResult[0]?.avg_rating || 0).toFixed(1),
+          total_views: sellerResult[0]?.total_views || 0,
+        };
+        console.log(result)
+        res.status(200).json(result);
+      });
+    } else {
+      res.status(200).json(user);
+    }
+  });
+};
 
 const UpdateUserInfo = async (req , res) => {
   try {

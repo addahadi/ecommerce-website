@@ -1,5 +1,4 @@
 
-import wishListCard from "../scripts/wishListCard.js"
 document.addEventListener("DOMContentLoaded" , async () => {
     await fetchWishLists()
 })
@@ -17,7 +16,13 @@ async function fetchWishLists() {
         })
         if(response.ok){
             const result = await response.json()
-            showWishLists(result.data)
+            if(result.data.length == 0 ){
+                document.getElementById("empty-state").style.display = "block";
+            }
+            else {
+                showWishLists(result.data)
+                document.getElementById("empty-state").style.display = "none";
+            }
         }
     }
     catch(err){
@@ -30,9 +35,9 @@ async function fetchWishLists() {
 
 
 function showWishLists(data){
-    const template = document.getElementById("row-tpl");
+    const template = document.getElementById("wishlist-section");
     data.forEach(product => {
-        const productRow = wishListCard(product)
+        const productRow = window.wishListCard(product)
         template.appendChild(productRow);
     });
 }

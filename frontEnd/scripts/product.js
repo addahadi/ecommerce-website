@@ -1,6 +1,3 @@
-import { mysqlDatetimeToNormal } from "../utils/util.js"
-import productCard from "./productCard.js"
-import { showToast } from "/utils/util.js"
 
 
 
@@ -17,11 +14,8 @@ document.addEventListener("DOMContentLoaded" , async () => {
 
 
 async function getProduct(){
-    const path = window.location.pathname;
-
-    const parts = path.split("/");
-
-    const productId = parts[parts.length - 1];
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get("id");
     console.log(productId)
 
 
@@ -51,33 +45,41 @@ async function getProduct(){
     }
 }
 
-
 function showProductInfo(data){
-    document.getElementById("mainImg").src = `/server/uploads/${data.imges[0]}`
-    document.getElementById("title").textContent = data.title
-    document.getElementById("description").textContent = data.descr; 
-    document.getElementById("price").textContent = data.price + "$";
-    document.getElementById("date").textContent = mysqlDatetimeToNormal(data.created_at);
-    document.getElementById("category").textContent = data.category;
-    document.getElementById("region").textContent = data.region;
-    document.getElementById("regionn").textContent = data.region
-    document.getElementById("phone").textContent = data.phone_number;
+  document.getElementById(
+    "mainImg"
+  ).src = `http://localhost:8090/uploads/${data.imges[0]}`;
+  document.getElementById("title").textContent = data.title;
+  document.getElementById("description").textContent = data.descr;
+  document.getElementById("price").textContent = data.price + "$";
+  document.getElementById("date").textContent = window.mysqlDatetimeToNormal(
+    data.created_at
+  );
+  document.getElementById("category").textContent = data.category;
+  document.getElementById("region").textContent = data.region;
+  document.getElementById("regionn").textContent = data.region;
+  document.getElementById("phone").textContent = data.phone_number;
 
+  document.getElementById(
+    "img_logo"
+  ).src = `http://localhost:8090/uploads/${data.store_logo}`;
+  const link = document.getElementById("logo"); 
+  link.textContent = data.store_name; 
+  link.href = `/pages/sellerProfile.html?id=${data.user_Id}`; 
 
+  const thumbnail = document.getElementById("thumbnails");
+  thumbnail.innerHTML = "";
+  data.imges.forEach((imgUrl) => {
+    const imgContainer = document.createElement("img");
+    imgContainer.src = `http://localhost:8090/uploads/${imgUrl}`;
+    imgContainer.classList.add("thumbnail");
 
-    const thumbnail = document.getElementById("thumbnails");
-    thumbnail.innerHTML = ""; 
-    data.imges.forEach((imgUrl) => {
-        const imgContainer = document.createElement("img");
-        imgContainer.src = `/server/uploads/${imgUrl}`;
-        imgContainer.classList.add("thumbnail");
-
-        imgContainer.addEventListener("click", () => {
-            document.getElementById("mainImg").src = imgContainer.src;
-        });
-
-        thumbnail.appendChild(imgContainer);
+    imgContainer.addEventListener("click", () => {
+      document.getElementById("mainImg").src = imgContainer.src;
     });
+
+    thumbnail.appendChild(imgContainer);
+  });
 }
 
 
@@ -91,9 +93,8 @@ function showProductInfo(data){
 
 
 async function fetchWishList(){
-  const path = window.location.pathname;
-  const parts = path.split("/");
-  const productId = parts[parts.length - 1];
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get("id");
   const WishButton = document.getElementById("addToWish");
 
 
@@ -127,9 +128,8 @@ async function fetchWishList(){
 
 
 async function getRecommendedList()  {
-  const path = window.location.pathname;
-  const parts = path.split("/");
-  const productId = parts[parts.length - 1];
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get("id");
   try {
     const response = await fetch(
       `http://localhost:8090/products/getrecommendedlist/${productId}`,
@@ -141,7 +141,7 @@ async function getRecommendedList()  {
     if(response.ok){
       const result = await response.json()
       result.data.map((product) => {
-        document.getElementById("reclist-container").appendChild(productCard(product));
+        document.getElementById("reclist-container").appendChild(window.productCard(product));
       })
       console.log(result)
     }
@@ -157,9 +157,8 @@ function toggleToWishList(){
     const WishButton = document.getElementById("addToWish");
     const toast = document.getElementById("toast")
     
-    const path = window.location.pathname;
-    const parts = path.split("/");
-    const productId = parts[parts.length - 1];
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get("id");
   
     WishButton.addEventListener("click", async () => {
         try {
@@ -179,7 +178,7 @@ function toggleToWishList(){
 
           if (response.ok) {
             const result = await response.json();
-              showToast(
+              window.showToast(
                 result.status
                   ? "Added to wish-list ✔️"
                   : "Removed from wish-list ❌"
@@ -245,9 +244,8 @@ async function sendMessage(seller_id){
   const Name = document.getElementById("name")
   const Whatsapp = document.getElementById("whatsapp");
   const message = document.getElementById("message");
-  const path = window.location.pathname;
-  const parts = path.split("/");
-  const productId = parts[parts.length - 1];
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get("id");
   const body = 'Client ' + Name.value.trim() + " sent you a message . WhatsApp: " + Whatsapp.value.trim() + " message :" + message.value.trim()
   
   const requestBody =  {
@@ -270,7 +268,7 @@ async function sendMessage(seller_id){
       const result = await  response.json()
       modal.style.display = "none";
       setTimeout(() => {
-        showToast("message was sent ✔️" , toast);
+        window.showToast("message was sent ✔️" , toast);
 
       },500)
     }
